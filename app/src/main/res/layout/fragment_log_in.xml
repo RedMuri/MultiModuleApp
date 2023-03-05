@@ -28,35 +28,36 @@
         android:hint="@string/first_name"
         android:importantForAutofill="no"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@id/til_password"
+        app:layout_constraintBottom_toTopOf="@id/et_password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_title_log_in"
         app:layout_constraintVertical_chainStyle="spread" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/til_password"
-        android:layout_width="289dp"
-        android:layout_height="29dp"
+    <EditText
+        android:id="@+id/et_password"
+        style="@style/AuthoriseUserField"
+        android:hint="@string/password"
+        android:importantForAutofill="no"
         android:inputType="textPassword"
-        app:boxStrokeWidth="0dp"
-        app:boxStrokeWidthFocused="0dp"
         app:layout_constraintBottom_toTopOf="@id/et_email"
-        app:layout_constraintEnd_toEndOf="@+id/et_first_name"
-        app:layout_constraintStart_toStartOf="@+id/et_first_name"
-        app:layout_constraintTop_toBottomOf="@+id/et_first_name"
-        app:passwordToggleEnabled="true">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_first_name" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/et_password"
-            style="@style/AuthoriseUserField"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingStart="44dp"
-            android:gravity="center"
-            android:hint="@string/password"
-            android:inputType="textPassword" />
-    </com.google.android.material.textfield.TextInputLayout>
+    <ImageView
+        android:id="@+id/bt_hide_password"
+        android:layout_width="wrap_content"
+        android:foreground="@drawable/fg_hide_password"
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_hide_password"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/et_password"
+        app:layout_constraintEnd_toEndOf="@id/et_password"
+        app:layout_constraintTop_toTopOf="@+id/et_password"
+        android:contentDescription="@string/button_hide_password" />
 
     <EditText
         android:id="@+id/et_email"
@@ -66,9 +67,9 @@
         android:inputType="textEmailAddress"
         android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@id/bt_log_in"
-        app:layout_constraintEnd_toEndOf="@+id/til_password"
-        app:layout_constraintStart_toStartOf="@+id/til_password"
-        app:layout_constraintTop_toBottomOf="@+id/til_password" />
+        app:layout_constraintEnd_toEndOf="@+id/et_password"
+        app:layout_constraintStart_toStartOf="@+id/et_password"
+        app:layout_constraintTop_toBottomOf="@+id/et_password" />
 
     <Button
         android:id="@+id/bt_log_in"
