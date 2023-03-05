@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:id="@+id/tv_profile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat_700"
+        android:text="@string/profile"
+        android:textSize="15sp"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.03" />
+
+    <ImageView
+        android:id="@+id/bt_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:clickable="true"
+        android:focusable="true"
+        android:contentDescription="@string/user_profile_picture"
+        android:src="@drawable/ic_back"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_profile"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_profile" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/iv_profile"
+        android:layout_width="66dp"
+        android:layout_height="66dp"
+        android:src="@drawable/ic_back"
+        app:civ_border_color="#FF000000"
+        app:layout_constraintBottom_toTopOf="@id/tv_change_photo"
+        app:civ_border_width="2dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_profile" />
+
+    <TextView
+        android:id="@+id/tv_change_photo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_click_text"
+        android:clickable="true"
+        android:focusable="true"
+        android:textColor="@color/profile_change_photo"
+        android:fontFamily="@font/montserrat_500"
+        android:text="@string/change_photo"
+        android:textSize="11sp"
+        app:layout_constraintBottom_toTopOf="@id/tv_user_name"
+        app:layout_constraintEnd_toEndOf="@+id/iv_profile"
+        app:layout_constraintStart_toStartOf="@+id/iv_profile"
+        app:layout_constraintTop_toBottomOf="@id/iv_profile" />
+
+    <TextView
+        android:id="@+id/tv_user_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:fontFamily="@font/montserrat_700"
+        android:text="@string/default_user_name"
+        android:textColor="@color/profile_user_name"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toTopOf="@+id/bt_upload_item"
+        app:layout_constraintEnd_toEndOf="@id/tv_change_photo"
+        app:layout_constraintStart_toStartOf="@id/tv_change_photo"
+        app:layout_constraintTop_toBottomOf="@id/tv_change_photo" />
+
+    <Button
+        android:id="@+id/bt_upload_item"
+        style="@style/ButtonMainBlue"
+        android:layout_width="290dp"
+        android:layout_height="40dp"
+        android:text="@string/upload_item"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.28" />
+
+    <LinearLayout
+        android:id="@+id/item_trade_store"
+        style="@style/ProfileItem"
+        app:layout_constraintBottom_toTopOf="@id/item_payment_method"
+        app:layout_constraintEnd_toEndOf="@id/bt_upload_item"
+        app:layout_constraintStart_toStartOf="@id/bt_upload_item"
+        app:layout_constraintTop_toBottomOf="@id/bt_upload_item">
+
+        <ImageView
+            style="@style/ProfileItemIcon"
+            android:contentDescription="@string/credit_card_icon"
+            android:src="@drawable/ic_credit_card" />
+
+        <TextView
+            style="@style/ProfileItemText"
+            android:text="@string/trade_store" />
+
+        <ImageView
+            style="@style/ProfileItemIconAfterText"
+            android:contentDescription="@string/right_arrow"
+            android:src="@drawable/ic_right_arrow" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/item_payment_method"
+        style="@style/ProfileItem"
+        app:layout_constraintBottom_toTopOf="@id/item_balance"
+        app:layout_constraintEnd_toEndOf="@id/bt_upload_item"
+        app:layout_constraintStart_toStartOf="@id/bt_upload_item"
+        app:layout_constraintTop_toBottomOf="@id/item_trade_store">
+
+        <ImageView
+            style="@style/ProfileItemIcon"
+            android:contentDescription="@string/credit_card_icon"
+            android:src="@drawable/ic_credit_card" />
+
+        <TextView
+            style="@style/ProfileItemText"
+            android:text="@string/payment_method" />
+
+        <ImageView
+            style="@style/ProfileItemIconAfterText"
+            android:contentDescription="@string/right_arrow"
+            android:src="@drawable/ic_right_arrow" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/item_balance"
+        style="@style/ProfileItem"
+        app:layout_constraintBottom_toTopOf="@id/item_trade_history"
+        app:layout_constraintEnd_toEndOf="@id/bt_upload_item"
+        app:layout_constraintStart_toStartOf="@id/bt_upload_item"
+        app:layout_constraintTop_toBottomOf="@id/item_payment_method">
+
+        <ImageView
+            style="@style/ProfileItemIcon"
+            android:contentDescription="@string/credit_card_icon"
+            android:src="@drawable/ic_credit_card" />
+
+        <TextView
+            style="@style/ProfileItemText"
+            android:text="@string/balance" />
+
+        <TextView
+            style="@style/ProfileItemTextAfterText"
+            android:text="@string/default_balance" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/item_trade_history"
+        style="@style/ProfileItem"
+        app:layout_constraintBottom_toTopOf="@id/item_restore_purchase"
+        app:layout_constraintEnd_toEndOf="@id/bt_upload_item"
+        app:layout_constraintStart_toStartOf="@id/bt_upload_item"
+        app:layout_constraintTop_toBottomOf="@id/item_balance">
+
+        <ImageView
+            style="@style/ProfileItemIcon"
+            android:contentDescription="@string/credit_card_icon"
+            android:src="@drawable/ic_credit_card" />
+
+        <TextView
+            style="@style/ProfileItemText"
+            android:text="@string/trade_history" />
+
+        <ImageView
+            style="@style/ProfileItemIconAfterText"
+            android:contentDescription="@string/right_arrow"
+            android:src="@drawable/ic_right_arrow" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/item_restore_purchase"
+        style="@style/ProfileItem"
+        app:layout_constraintBottom_toTopOf="@id/item_help"
+        app:layout_constraintEnd_toEndOf="@id/bt_upload_item"
+        app:layout_constraintStart_toStartOf="@id/bt_upload_item"
+        app:layout_constraintTop_toBottomOf="@id/item_trade_history">
+
+        <ImageView
+            style="@style/ProfileItemIcon"
+            android:contentDescription="@string/restore_icon"
+            android:src="@drawable/ic_restore" />
+
+        <TextView
+            style="@style/ProfileItemText"
+            android:text="@string/restore_purchase" />
+
+        <ImageView
+            style="@style/ProfileItemIconAfterText"
+            android:contentDescription="@string/right_arrow"
+            android:src="@drawable/ic_right_arrow" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/item_help"
+        style="@style/ProfileItem"
+        app:layout_constraintEnd_toEndOf="@id/bt_upload_item"
+        app:layout_constraintBottom_toTopOf="@id/item_log_out"
+        app:layout_constraintStart_toStartOf="@id/bt_upload_item"
+        app:layout_constraintTop_toBottomOf="@id/item_restore_purchase"
+        tools:ignore="UseCompoundDrawables">
+
+        <ImageView
+            style="@style/ProfileItemIcon"
+            android:contentDescription="@string/question_mark"
+            android:src="@drawable/ic_question" />
+
+        <TextView
+            style="@style/ProfileItemText"
+            android:text="@string/help" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/item_log_out"
+        style="@style/ProfileItem"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/bt_upload_item"
+        app:layout_constraintStart_toStartOf="@id/bt_upload_item"
+        app:layout_constraintTop_toBottomOf="@id/item_help"
+        tools:ignore="UseCompoundDrawables">
+
+        <ImageView
+            style="@style/ProfileItemIcon"
+            android:contentDescription="@string/log_out_icon"
+            android:src="@drawable/ic_log_out" />
+
+        <TextView
+            style="@style/ProfileItemText"
+            android:text="@string/log_out" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
