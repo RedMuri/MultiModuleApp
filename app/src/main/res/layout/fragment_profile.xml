@@ -28,7 +28,7 @@
         android:background="?attr/selectableItemBackgroundBorderless"
         android:clickable="true"
         android:focusable="true"
-        android:contentDescription="@string/user_profile_picture"
+        android:contentDescription="@string/back_arrow"
         android:src="@drawable/ic_back"
         app:layout_constraintBottom_toBottomOf="@+id/tv_profile"
         app:layout_constraintStart_toStartOf="parent"
