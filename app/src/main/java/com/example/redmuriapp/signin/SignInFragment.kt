@@ -34,11 +34,15 @@ class SignInFragment : Fragment() {
 
     private fun observeViewModel() {
         signInViewModel.signInState.observe(viewLifecycleOwner) {
+            binding.progressBar.visibility = View.GONE
+            binding.btSignIn.isEnabled = true
             when (it) {
                 is Success -> {
                     Toast.makeText(requireContext(), "Success!", Toast.LENGTH_SHORT).show()
                 }
                 is Progress -> {
+                    binding.progressBar.visibility = View.VISIBLE
+                    binding.btSignIn.isEnabled = false
                     Toast.makeText(requireContext(), "In progress...", Toast.LENGTH_SHORT).show()
                 }
                 is Error -> {
