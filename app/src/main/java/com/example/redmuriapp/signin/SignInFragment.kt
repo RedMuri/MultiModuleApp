@@ -22,7 +22,7 @@ class SignInFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View{
+    ): View {
         _binding = FragmentSignInBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -32,9 +32,9 @@ class SignInFragment : Fragment() {
         observeViewModel()
     }
 
-    fun observeViewModel() {
+    private fun observeViewModel() {
         signInViewModel.signInState.observe(viewLifecycleOwner) {
-            when (it){
+            when (it) {
                 is Success -> {
                     Toast.makeText(requireContext(), "Success!", Toast.LENGTH_SHORT).show()
                 }
@@ -48,18 +48,17 @@ class SignInFragment : Fragment() {
         }
     }
 
-    fun showError(errorCode: Int){
-
+    private fun showError(errorCode: Int) {
+        when (errorCode) {
+            1 -> binding.etFirstName.error = "This field is required"
+            2 -> binding.etLastName.error = "This field is required"
+            3 -> binding.etEmail.error = "This field is required"
+            4 -> binding.etEmail.error = "Not valid email"
+        }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-
-    companion object {
-
-        fun newInstance() =
-            SignInFragment()
     }
 }
