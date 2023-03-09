@@ -1,13 +1,14 @@
-package com.example.redmuriapp
+package com.example.redmuriapp.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.example.redmuriapp.R
 
 
-class MainFragment : Fragment() {
+class DetailFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -17,12 +18,12 @@ class MainFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
-        return inflater.inflate(R.layout.fragment_main, container, false)
+        return inflater.inflate(R.layout.fragment_detail, container, false)
     }
 
     companion object {
 
         fun newInstance() =
-            MainFragment()
+            DetailFragment()
     }
 }

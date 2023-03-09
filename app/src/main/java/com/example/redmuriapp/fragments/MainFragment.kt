@@ -1,13 +1,14 @@
-package com.example.redmuriapp
+package com.example.redmuriapp.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.example.redmuriapp.R
 
 
-class SignInFragment : Fragment() {
+class MainFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -17,12 +18,12 @@ class SignInFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
-        return inflater.inflate(R.layout.fragment_sign_in, container, false)
+        return inflater.inflate(R.layout.fragment_main, container, false)
     }
 
     companion object {
 
         fun newInstance() =
-            SignInFragment()
+            MainFragment()
     }
 }

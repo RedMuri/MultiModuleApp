@@ -7,12 +7,12 @@
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.example.redmuriapp.MainFragment"
+        android:name="com.example.redmuriapp.fragments.MainFragment"
         android:label="fragment_main"
         tools:layout="@layout/fragment_main" />
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.example.redmuriapp.ProfileFragment"
+        android:name="com.example.redmuriapp.fragments.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
 </navigation>
