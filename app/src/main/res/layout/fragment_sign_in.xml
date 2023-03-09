@@ -25,9 +25,9 @@
         android:id="@+id/et_first_name"
         style="@style/AuthoriseUserField"
         android:layout_marginTop="40dp"
+        android:hint="@string/first_name"
         android:importantForAutofill="no"
         android:inputType="textPersonName"
-        android:hint="@string/first_name"
         app:layout_constraintBottom_toTopOf="@id/et_last_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -39,11 +39,11 @@
         style="@style/AuthoriseUserField"
         android:hint="@string/last_name"
         android:importantForAutofill="no"
+        android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@id/et_email"
         app:layout_constraintEnd_toEndOf="@+id/et_first_name"
         app:layout_constraintStart_toStartOf="@+id/et_first_name"
-        app:layout_constraintTop_toBottomOf="@+id/et_first_name"
-        android:inputType="textPersonName" />
+        app:layout_constraintTop_toBottomOf="@+id/et_first_name" />
 
     <EditText
         android:id="@+id/et_email"
@@ -149,14 +149,24 @@
         app:layout_constraintStart_toStartOf="@+id/tv_sign_in_google"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.85" />
-    <ProgressBar
+
+    <LinearLayout
         android:id="@+id/progress_bar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:clickable="true"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

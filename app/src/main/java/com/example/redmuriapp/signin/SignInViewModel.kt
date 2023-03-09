@@ -3,23 +3,28 @@ package com.example.redmuriapp.signin
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class SignInViewModel : ViewModel() {
 
     private var _signInState = MutableLiveData<SignInState>()
     val signInState: LiveData<SignInState> = _signInState
 
-    fun signIn(inputEmail: String, inputPassword: String, repeatPassword: String) {
-        _signInState.value = Progress
-        val fieldsValid = validateInputSignIn(inputEmail, inputPassword, repeatPassword)
+    fun signIn(firstName: String, lastName: String, email: String) {
+        val fieldsValid = validateInputSignIn(firstName, lastName, email)
         if (fieldsValid) {
-            _signInState.value = Success
-            TODO()
+            _signInState.value = Progress
+            // Loading
+            viewModelScope.launch {
+                delay(3000)
+                _signInState.value = Success
+            }
         }
     }
 
     private fun validateInputSignIn(firstName: String, lastName: String, email: String, ): Boolean {
-
         if (firstName.isBlank()) {
             _signInState.value = Error(ERROR_EMPTY_FIRST_NAME)
             return false

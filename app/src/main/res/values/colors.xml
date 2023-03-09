@@ -19,5 +19,5 @@
     <color name="profile_user_name">#3F3F3F</color>
     <color name="profile_change_photo">#808080</color>
 
-
+    <color name="authorization_error">#E46363</color>
 </resources>
