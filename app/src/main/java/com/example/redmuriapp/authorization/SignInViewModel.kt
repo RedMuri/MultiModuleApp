@@ -1,4 +1,4 @@
-package com.example.redmuriapp.signin
+package com.example.redmuriapp.authorization
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -9,36 +9,36 @@ import kotlinx.coroutines.launch
 
 class SignInViewModel : ViewModel() {
 
-    private var _signInState = MutableLiveData<SignInState>()
-    val signInState: LiveData<SignInState> = _signInState
+    private var _authState = MutableLiveData<AuthState>()
+    val authState: LiveData<AuthState> = _authState
 
     fun signIn(firstName: String, lastName: String, email: String) {
         val fieldsValid = validateInputSignIn(firstName, lastName, email)
         if (fieldsValid) {
-            _signInState.value = Progress
+            _authState.value = Progress
             // Loading
             viewModelScope.launch {
                 delay(3000)
-                _signInState.value = Success
+                _authState.value = Success
             }
         }
     }
 
     private fun validateInputSignIn(firstName: String, lastName: String, email: String, ): Boolean {
         if (firstName.isBlank()) {
-            _signInState.value = Error(ERROR_EMPTY_FIRST_NAME)
+            _authState.value = Error(ERROR_EMPTY_FIRST_NAME)
             return false
         }
         if (lastName.isBlank()) {
-            _signInState.value = Error(ERROR_EMPTY_LAST_NAME)
+            _authState.value = Error(ERROR_EMPTY_LAST_NAME)
             return false
         }
         if (email.isBlank()) {
-            _signInState.value = Error(ERROR_EMPTY_EMAIL)
+            _authState.value = Error(ERROR_EMPTY_EMAIL)
             return false
         }
         if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            _signInState.value = Error(ERROR_NOT_VALID_EMAIL)
+            _authState.value = Error(ERROR_NOT_VALID_EMAIL)
             return false
         }
         return true

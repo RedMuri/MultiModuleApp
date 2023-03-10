@@ -1,8 +1,6 @@
-package com.example.redmuriapp.signin
+package com.example.redmuriapp.authorization
 
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,10 +8,10 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.ContextCompat
-import androidx.core.widget.addTextChangedListener
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.example.redmuriapp.R
 import com.example.redmuriapp.databinding.FragmentSignInBinding
 
@@ -48,10 +46,13 @@ class SignInFragment : Fragment() {
             val email = binding.etEmail.text.toString()
             signInViewModel.signIn(firstName, lastName, email)
         }
+        binding.tvLogIn.setOnClickListener {
+            findNavController().navigate(R.id.action_signInFragment_to_logInFragment)
+        }
     }
 
     private fun observeViewModel() {
-        signInViewModel.signInState.observe(viewLifecycleOwner) {
+        signInViewModel.authState.observe(viewLifecycleOwner) {
             binding.progressBar.visibility = View.GONE
             binding.btSignIn.isEnabled = true
 
@@ -62,7 +63,6 @@ class SignInFragment : Fragment() {
                 is Progress -> {
                     binding.progressBar.visibility = View.VISIBLE
                     binding.btSignIn.isEnabled = false
-                    Toast.makeText(requireContext(), "In progress...", Toast.LENGTH_SHORT).show()
                 }
                 is Error -> {
                     showError(it.errorCode)

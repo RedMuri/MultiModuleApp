@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
-    tools:context=".signin.SignInFragment">
+    tools:context=".authorization.SignInFragment">
 
     <TextView
         android:id="@+id/tv_title_sign_in"

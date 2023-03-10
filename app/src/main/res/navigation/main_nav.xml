@@ -24,7 +24,7 @@
         tools:layout="@layout/fragment_profile" />
     <fragment
         android:id="@+id/signInFragment"
-        android:name="com.example.redmuriapp.signin.SignInFragment"
+        android:name="com.example.redmuriapp.authorization.SignInFragment"
         android:label="fragment_sign_in"
         tools:layout="@layout/fragment_sign_in" >
         <action
@@ -33,7 +33,7 @@
     </fragment>
     <fragment
         android:id="@+id/logInFragment"
-        android:name="com.example.redmuriapp.fragments.LogInFragment"
+        android:name="com.example.redmuriapp.authorization.LogInFragment"
         android:label="fragment_log_in"
         tools:layout="@layout/fragment_log_in" >
         <action
