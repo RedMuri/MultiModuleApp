@@ -3,9 +3,11 @@ package com.example.redmuriapp
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Layout
+import android.view.View
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
+import androidx.navigation.ui.setupWithNavController
 import androidx.preference.PreferenceManager
 import com.example.redmuriapp.fragments.MainFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -20,8 +22,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        setupNav()
         checkUserSigned()
-        setupBottomNavigation()
     }
 
     private fun checkUserSigned() {
@@ -32,8 +34,27 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun setupBottomNavigation() {
+    private fun setupNav() {
+        findViewById<BottomNavigationView>(R.id.bottom_nav)
+            .setupWithNavController(navController)
+
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.id) {
+                R.id.mainFragment -> showBottomNav()
+                R.id.profileFragment -> showBottomNav()
+                else -> hideBottomNav()
+            }
+        }
+    }
+
+    private fun showBottomNav() {
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottom_nav)
-        NavigationUI.setupWithNavController(bottomNav, navController)
+        bottomNav.visibility = View.VISIBLE
+    }
+
+    private fun hideBottomNav() {
+        val bottomNav = findViewById<BottomNavigationView>(R.id.bottom_nav)
+        bottomNav.visibility = View.GONE
     }
 }
+
