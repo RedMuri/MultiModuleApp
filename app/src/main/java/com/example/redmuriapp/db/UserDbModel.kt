@@ -5,11 +5,11 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = AppDatabase.USERS_TABLE_NAME)
 data class UserDbModel(
-    @PrimaryKey
-    val id: String,
     val firstName: String,
     val lastName: String,
     val email: String,
-    val password: String,
-    val profileImage: String,
+    val password: String = "123456",
+    val profileImage: String = "",
+    @PrimaryKey (autoGenerate = true)
+    val id: Int = 0,
 )

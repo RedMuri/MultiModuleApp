@@ -1,13 +1,16 @@
 package com.example.redmuriapp.authorization
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import android.app.Application
+import androidx.lifecycle.*
+import com.example.redmuriapp.db.RepositoryImpl
+import com.example.redmuriapp.db.UserDoesNotExistsException
+import com.example.redmuriapp.db.WrongPasswordLogInException
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-class LogInViewModel : ViewModel() {
+class LogInViewModel(application: Application) : AndroidViewModel(application) {
+
+    private val repositoryImpl = RepositoryImpl(application)
 
     private var _authState = MutableLiveData<AuthState>()
     val authState: LiveData<AuthState> = _authState
@@ -16,10 +19,16 @@ class LogInViewModel : ViewModel() {
         val fieldsValid = validateInputLogIn(firstName, password)
         if (fieldsValid) {
             _authState.value = Progress
-            // Loading
             viewModelScope.launch {
-                delay(3000)
-                _authState.value = Success
+                try {
+                    repositoryImpl.logIn(firstName,password) {
+                        _authState.value = Success
+                    }
+                } catch (e: UserDoesNotExistsException){
+                    _authState.value = Error(ERROR_USER_DOES_NOT_EXISTS)
+                } catch (e: WrongPasswordLogInException){
+                    _authState.value = Error(ERROR_WRONG_PASSWORD)
+                }
             }
         }
     }
@@ -40,5 +49,7 @@ class LogInViewModel : ViewModel() {
 
         const val ERROR_EMPTY_FIRST_NAME = 1
         const val ERROR_EMPTY_PASSWORD = 2
+        const val ERROR_USER_DOES_NOT_EXISTS = 3
+        const val ERROR_WRONG_PASSWORD = 4
     }
 }

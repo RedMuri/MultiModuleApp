@@ -1,13 +1,18 @@
 package com.example.redmuriapp.authorization
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.delay
+import com.example.redmuriapp.db.RepositoryImpl
+import com.example.redmuriapp.db.UserAlreadyExistsException
+import com.example.redmuriapp.db.UserDbModel
 import kotlinx.coroutines.launch
 
-class SignInViewModel : ViewModel() {
+class SignInViewModel(application: Application) : AndroidViewModel(application) {
+
+    private val repositoryImpl = RepositoryImpl(application)
 
     private var _authState = MutableLiveData<AuthState>()
     val authState: LiveData<AuthState> = _authState
@@ -16,15 +21,21 @@ class SignInViewModel : ViewModel() {
         val fieldsValid = validateInputSignIn(firstName, lastName, email)
         if (fieldsValid) {
             _authState.value = Progress
-            // Loading
+            val user = UserDbModel(firstName, lastName, email)
             viewModelScope.launch {
-                delay(3000)
-                _authState.value = Success
+                try {
+                    repositoryImpl.signIn(user) {
+                        _authState.value = Success
+                    }
+                } catch (e: UserAlreadyExistsException){
+                    _authState.value = Error(ERROR_SUCH_USER_EXISTS)
+                }
             }
+
         }
     }
 
-    private fun validateInputSignIn(firstName: String, lastName: String, email: String, ): Boolean {
+    private fun validateInputSignIn(firstName: String, lastName: String, email: String): Boolean {
         if (firstName.isBlank()) {
             _authState.value = Error(ERROR_EMPTY_FIRST_NAME)
             return false
@@ -50,5 +61,6 @@ class SignInViewModel : ViewModel() {
         const val ERROR_EMPTY_LAST_NAME = 2
         const val ERROR_EMPTY_EMAIL = 3
         const val ERROR_NOT_VALID_EMAIL = 4
+        const val ERROR_SUCH_USER_EXISTS = 5
     }
 }

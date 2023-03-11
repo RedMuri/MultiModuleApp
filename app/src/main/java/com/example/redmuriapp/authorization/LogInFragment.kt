@@ -12,6 +12,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.example.redmuriapp.R
 import com.example.redmuriapp.databinding.FragmentLogInBinding
 
@@ -64,6 +65,7 @@ class LogInFragment : Fragment() {
             when (it) {
                 is Success -> {
                     Toast.makeText(requireContext(), "Success!", Toast.LENGTH_SHORT).show()
+                    findNavController().navigate(R.id.action_logInFragment_to_mainFragment)
                 }
                 is Progress -> {
                     binding.progressBar.visibility = View.VISIBLE
@@ -78,13 +80,21 @@ class LogInFragment : Fragment() {
 
     private fun showError(errorCode: Int) {
         when (errorCode) {
-            1 -> {
+            LogInViewModel.ERROR_EMPTY_FIRST_NAME -> {
                 showErrorEditText(binding.etFirstName)
                 showErrorToast("All fields must be filled")
             }
-            2 -> {
+            LogInViewModel.ERROR_EMPTY_PASSWORD -> {
                 showErrorEditText(binding.etPassword)
                 showErrorToast("All fields must be filled")
+            }
+            LogInViewModel.ERROR_USER_DOES_NOT_EXISTS -> {
+                showErrorEditText(binding.etFirstName)
+                showErrorToast("User with such first name doesn't exists")
+            }
+            LogInViewModel.ERROR_WRONG_PASSWORD -> {
+                showErrorEditText(binding.etPassword)
+                showErrorToast("Wrong password")
             }
         }
     }
@@ -114,6 +124,12 @@ class LogInFragment : Fragment() {
                         R.color.authorise_user_field
                     )
                 )
+                setTextColor(
+                    ContextCompat.getColor(
+                        requireContext(),
+                        R.color.authorise_user_field
+                    )
+                )
             }
         }
     }
@@ -131,6 +147,12 @@ class LogInFragment : Fragment() {
                         R.drawable.bg_sign_in_field_error
                     )
                 setHintTextColor(
+                    ContextCompat.getColor(
+                        requireContext(),
+                        R.color.authorization_error
+                    )
+                )
+                setTextColor(
                     ContextCompat.getColor(
                         requireContext(),
                         R.color.authorization_error

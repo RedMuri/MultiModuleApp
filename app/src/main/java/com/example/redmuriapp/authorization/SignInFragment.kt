@@ -59,6 +59,7 @@ class SignInFragment : Fragment() {
             when (it) {
                 is Success -> {
                     Toast.makeText(requireContext(), "Success!", Toast.LENGTH_SHORT).show()
+                    findNavController().navigate(R.id.action_signInFragment_to_mainFragment)
                 }
                 is Progress -> {
                     binding.progressBar.visibility = View.VISIBLE
@@ -73,21 +74,25 @@ class SignInFragment : Fragment() {
 
     private fun showError(errorCode: Int) {
         when (errorCode) {
-            1 -> {
+            SignInViewModel.ERROR_EMPTY_FIRST_NAME -> {
                 showErrorEditText(binding.etFirstName)
                 showErrorToast("All fields must be filled")
             }
-            2 -> {
+            SignInViewModel.ERROR_EMPTY_LAST_NAME -> {
                 showErrorEditText(binding.etLastName)
                 showErrorToast("All fields must be filled")
             }
-            3 -> {
+            SignInViewModel.ERROR_EMPTY_EMAIL -> {
                 showErrorEditText(binding.etEmail)
                 showErrorToast("All fields must be filled")
             }
-            4 -> {
+            SignInViewModel.ERROR_NOT_VALID_EMAIL -> {
                 showErrorEditText(binding.etEmail)
                 showErrorToast("Not valid email")
+            }
+            SignInViewModel.ERROR_SUCH_USER_EXISTS -> {
+                showErrorEditText(binding.etFirstName)
+                showErrorToast("User with such first name already exists")
             }
         }
     }
@@ -120,6 +125,12 @@ class SignInFragment : Fragment() {
                         R.color.authorise_user_field
                     )
                 )
+                setTextColor(
+                    ContextCompat.getColor(
+                        requireContext(),
+                        R.color.authorise_user_field
+                    )
+                )
             }
         }
     }
@@ -142,6 +153,10 @@ class SignInFragment : Fragment() {
                         R.color.authorization_error
                     )
                 )
+                setTextColor(ContextCompat.getColor(
+                    requireContext(),
+                    R.color.authorization_error
+                ))
             }
         }
     }
