@@ -12,6 +12,8 @@ import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.preference.PreferenceManager
+import com.example.redmuriapp.MainActivity
 import com.example.redmuriapp.R
 import com.example.redmuriapp.databinding.FragmentSignInBinding
 
@@ -60,6 +62,7 @@ class SignInFragment : Fragment() {
                 is Success -> {
                     Toast.makeText(requireContext(), "Success!", Toast.LENGTH_SHORT).show()
                     findNavController().navigate(R.id.action_signInFragment_to_mainFragment)
+                    updateSharedPreferences(it.firstName)
                 }
                 is Progress -> {
                     binding.progressBar.visibility = View.VISIBLE
@@ -70,6 +73,12 @@ class SignInFragment : Fragment() {
                 }
             }
         }
+    }
+
+    private fun updateSharedPreferences(firstName: String) {
+        val pref = PreferenceManager.getDefaultSharedPreferences(requireContext())
+        pref.edit().putBoolean(MainActivity.IS_LOGGED, true).apply()
+        pref.edit().putString(MainActivity.USER_FIRST_NAME, firstName).apply()
     }
 
     private fun showError(errorCode: Int) {

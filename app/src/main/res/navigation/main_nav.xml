@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.example.redmuriapp.fragments.MainFragment"
+        android:name="com.example.redmuriapp.main_page.MainPageFragment"
         android:label="fragment_main"
-        tools:layout="@layout/fragment_main" >
+        tools:layout="@layout/fragment_main_page" >
         <action
             android:id="@+id/action_mainFragment_to_signInFragment"
             app:destination="@id/signInFragment"
@@ -23,7 +23,13 @@
         android:id="@+id/profileFragment"
         android:name="com.example.redmuriapp.fragments.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_signInFragment"
+            app:destination="@id/signInFragment"
+            app:popUpTo="@id/main_nav"
+            app:popUpToInclusive="true" />
+    </fragment>
     <fragment
         android:id="@+id/signInFragment"
         android:name="com.example.redmuriapp.authorization.SignInFragment"

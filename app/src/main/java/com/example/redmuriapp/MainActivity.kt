@@ -2,14 +2,10 @@ package com.example.redmuriapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.Layout
 import android.view.View
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
 import androidx.preference.PreferenceManager
-import com.example.redmuriapp.fragments.MainFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
@@ -28,7 +24,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun checkUserSigned() {
         val pref = PreferenceManager.getDefaultSharedPreferences(this)
-        val isRegistered = pref.getBoolean("isRegistered", false)
+        val isRegistered = pref.getBoolean(IS_LOGGED, false)
         if (!isRegistered) {
             navController.navigate(R.id.action_mainFragment_to_signInFragment)
         }
@@ -55,6 +51,12 @@ class MainActivity : AppCompatActivity() {
     private fun hideBottomNav() {
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottom_nav)
         bottomNav.visibility = View.GONE
+    }
+
+    companion object {
+
+        const val IS_LOGGED = "is_logged"
+        const val USER_FIRST_NAME = "user_first_name"
     }
 }
 

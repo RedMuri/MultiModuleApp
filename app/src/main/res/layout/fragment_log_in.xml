@@ -48,16 +48,16 @@
     <ImageView
         android:id="@+id/bt_hide_password"
         android:layout_width="wrap_content"
-        android:foreground="@drawable/fg_hide_password"
-        android:clickable="true"
-        android:focusable="true"
         android:layout_height="wrap_content"
+        android:padding="4dp"
+        android:layout_marginEnd="4dp"
+        android:clickable="true"
+        android:contentDescription="@string/button_hide_password"
+        android:focusable="true"
         android:src="@drawable/ic_hide_password"
-        android:layout_marginEnd="8dp"
         app:layout_constraintBottom_toBottomOf="@+id/et_password"
         app:layout_constraintEnd_toEndOf="@id/et_password"
-        app:layout_constraintTop_toTopOf="@+id/et_password"
-        android:contentDescription="@string/button_hide_password" />
+        app:layout_constraintTop_toTopOf="@+id/et_password" />
 
     <EditText
         android:id="@+id/et_email"
@@ -92,7 +92,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

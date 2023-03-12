@@ -6,7 +6,7 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 
 @Dao
-interface AuthDao {
+interface UsersDao {
 
     @Query("select * from users where firstName == :firstName")
     suspend fun getUserByFirstName(firstName: String): UserDbModel?
@@ -16,4 +16,7 @@ interface AuthDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun editUser(userDbModel: UserDbModel)
+
+    @Query("delete from users where firstName=:firstName")
+    suspend fun deleteUserByFirstName(firstName: String)
 }

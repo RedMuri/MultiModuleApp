@@ -2,15 +2,14 @@ package com.example.redmuriapp.authorization
 
 import android.app.Application
 import androidx.lifecycle.*
-import com.example.redmuriapp.db.RepositoryImpl
+import com.example.redmuriapp.db.UsersRepositoryImpl
 import com.example.redmuriapp.db.UserDoesNotExistsException
 import com.example.redmuriapp.db.WrongPasswordLogInException
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class LogInViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val repositoryImpl = RepositoryImpl(application)
+    private val usersRepositoryImpl = UsersRepositoryImpl(application)
 
     private var _authState = MutableLiveData<AuthState>()
     val authState: LiveData<AuthState> = _authState
@@ -21,8 +20,8 @@ class LogInViewModel(application: Application) : AndroidViewModel(application) {
             _authState.value = Progress
             viewModelScope.launch {
                 try {
-                    repositoryImpl.logIn(firstName,password) {
-                        _authState.value = Success
+                    usersRepositoryImpl.logIn(firstName,password) {
+                        _authState.value = Success(firstName)
                     }
                 } catch (e: UserDoesNotExistsException){
                     _authState.value = Error(ERROR_USER_DOES_NOT_EXISTS)

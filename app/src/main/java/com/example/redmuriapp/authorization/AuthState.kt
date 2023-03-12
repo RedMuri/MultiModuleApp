@@ -4,4 +4,4 @@ sealed class AuthState()
 
 object Progress : AuthState()
 class Error(val errorCode: Int): AuthState()
-object Success: AuthState()
+class Success(val firstName: String): AuthState()

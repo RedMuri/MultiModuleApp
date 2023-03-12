@@ -5,14 +5,14 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.redmuriapp.db.RepositoryImpl
+import com.example.redmuriapp.db.UsersRepositoryImpl
 import com.example.redmuriapp.db.UserAlreadyExistsException
 import com.example.redmuriapp.db.UserDbModel
 import kotlinx.coroutines.launch
 
 class SignInViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val repositoryImpl = RepositoryImpl(application)
+    private val usersRepositoryImpl = UsersRepositoryImpl(application)
 
     private var _authState = MutableLiveData<AuthState>()
     val authState: LiveData<AuthState> = _authState
@@ -24,8 +24,8 @@ class SignInViewModel(application: Application) : AndroidViewModel(application) 
             val user = UserDbModel(firstName, lastName, email)
             viewModelScope.launch {
                 try {
-                    repositoryImpl.signIn(user) {
-                        _authState.value = Success
+                    usersRepositoryImpl.signIn(user) {
+                        _authState.value = Success(firstName)
                     }
                 } catch (e: UserAlreadyExistsException){
                     _authState.value = Error(ERROR_SUCH_USER_EXISTS)

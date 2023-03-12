@@ -9,6 +9,7 @@ data class UserDbModel(
     val lastName: String,
     val email: String,
     val password: String = "123456",
+    val location: String = "Moscow",
     val profileImage: String = "",
     @PrimaryKey (autoGenerate = true)
     val id: Int = 0,

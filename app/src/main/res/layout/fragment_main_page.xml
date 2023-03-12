@@ -8,7 +8,7 @@
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent"
-    tools:context=".fragments.MainFragment">
+    tools:context=".main_page.MainPageFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -70,7 +70,7 @@
             app:layout_constraintTop_toTopOf="@+id/tv_title1" />
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/tv_location"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -88,10 +88,10 @@
             android:layout_marginStart="1dp"
             android:contentDescription="@string/down_arrow"
             android:src="@drawable/ic_down_arrow"
-            app:layout_constraintBottom_toBottomOf="@+id/textView"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_location"
             app:layout_constraintEnd_toEndOf="@+id/circleImageView"
-            app:layout_constraintStart_toEndOf="@+id/textView"
-            app:layout_constraintTop_toTopOf="@+id/textView" />
+            app:layout_constraintStart_toEndOf="@+id/tv_location"
+            app:layout_constraintTop_toTopOf="@+id/tv_location" />
 
         <EditText
             android:id="@+id/et_search"
@@ -107,7 +107,7 @@
             android:textSize="11sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_location" />
 
         <ImageView
             android:layout_width="wrap_content"
