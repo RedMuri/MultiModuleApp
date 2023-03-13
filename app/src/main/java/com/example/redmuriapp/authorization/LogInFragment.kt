@@ -67,7 +67,7 @@ class LogInFragment : Fragment() {
             when (it) {
                 is AuthSuccess -> {
                     Toast.makeText(requireContext(), "Success!", Toast.LENGTH_SHORT).show()
-                    findNavController().navigate(R.id.action_logInFragment_to_mainFragment)
+                    launchMainPageFragment()
                     updateSharedPreferences(it.firstName)
                 }
                 is AuthProgress -> {
@@ -79,6 +79,10 @@ class LogInFragment : Fragment() {
                 }
             }
         }
+    }
+
+    private fun launchMainPageFragment() {
+        findNavController().navigate(R.id.action_logInFragment_to_mainFragment)
     }
 
     private fun updateSharedPreferences(firstName: String) {

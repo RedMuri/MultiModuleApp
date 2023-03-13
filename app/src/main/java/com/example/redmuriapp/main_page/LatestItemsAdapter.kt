@@ -1,24 +1,16 @@
 package com.example.redmuriapp.main_page
 
-import android.app.Application
-import android.graphics.Bitmap
-import android.graphics.drawable.BitmapDrawable
-import android.graphics.drawable.Drawable
-import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
-import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import com.example.redmuriapp.R
 import com.example.redmuriapp.databinding.ItemLatestBinding
 import com.example.redmuriapp.retrofit.LatestItemDto
-import com.squareup.picasso.Picasso
 
-class LatestItemsAdapter(
-    val application: Application,
-) :
+class LatestItemsAdapter() :
     ListAdapter<LatestItemDto, LatestItemsAdapter.LatestItemViewHolder>(LatestItemDiffCallback()) {
+
+    var onItemClickListener: ((LatestItemDto) -> Unit)? = null
 
     class LatestItemViewHolder(val binding: ItemLatestBinding) :
         ViewHolder(binding.root)
@@ -40,6 +32,9 @@ class LatestItemsAdapter(
 //                    .load(image_url)
 //                    .placeholder(R.drawable.ic_apple)
 //                    .into(ivItemImage)
+                root.setOnClickListener {
+                    onItemClickListener?.invoke(this)
+                }
             }
         }
     }

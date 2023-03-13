@@ -3,19 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:ignore="smallSP"
-    tools:context=".fragments.DetailFragment"
+    tools:context=".detail_page.DetailPageFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
 
-    <androidx.viewpager.widget.ViewPager
+    <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/vp_photos"
         android:layout_width="328dp"
         android:layout_height="279dp"
         android:layout_gravity="center"
-        android:clipToPadding="false"
-        android:paddingStart="32dp"
-        android:paddingEnd="32dp"
+        android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -59,6 +57,7 @@
         android:layout_height="83dp"
         android:layout_gravity="center"
         android:layout_marginTop="35dp"
+        tools:listitem="@layout/rv_item_image"
         android:orientation="horizontal"
         android:paddingStart="32dp"
         android:paddingEnd="32dp"
@@ -183,10 +182,9 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="117dp"
-        android:layout_marginTop="20dp"
+        android:layout_height="104dp"
         android:background="@drawable/bg_detail_bottom_panel"
-        app:layout_constraintTop_toBottomOf="@+id/cv_color">
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <TextView
             android:id="@+id/tv_quantity"
@@ -198,66 +196,66 @@
             android:text="@string/quantity"
             android:textColor="#808080"
             android:textSize="9sp"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/bt_quantity_minus"
             android:layout_width="38dp"
             android:layout_height="22dp"
             android:layout_marginTop="10dp"
+            android:background="@drawable/bg_detail_quantity_buttons"
             android:contentDescription="@string/icon_minus"
             android:gravity="center"
             android:paddingHorizontal="14dp"
-            android:background="@drawable/bg_detail_quantity_buttons"
             android:src="@drawable/ic_quantity_minus"
-            app:layout_constraintTop_toBottomOf="@id/tv_quantity"
-            app:layout_constraintStart_toStartOf="@id/tv_quantity"/>
+            app:layout_constraintStart_toStartOf="@id/tv_quantity"
+            app:layout_constraintTop_toBottomOf="@id/tv_quantity" />
 
         <ImageView
             android:id="@+id/bt_quantity_plus"
             android:layout_width="38dp"
             android:layout_height="22dp"
             android:layout_marginStart="20dp"
-            android:paddingHorizontal="14dp"
+            android:background="@drawable/bg_detail_quantity_buttons"
             android:contentDescription="@string/icon_plus"
             android:gravity="center"
-            android:background="@drawable/bg_detail_quantity_buttons"
+            android:paddingHorizontal="14dp"
             android:src="@drawable/ic_quantity_plus"
-            app:layout_constraintTop_toTopOf="@id/bt_quantity_minus"
-            app:layout_constraintStart_toEndOf="@id/bt_quantity_minus"/>
+            app:layout_constraintStart_toEndOf="@id/bt_quantity_minus"
+            app:layout_constraintTop_toTopOf="@id/bt_quantity_minus" />
 
         <LinearLayout
             android:id="@+id/bt_add_to_cart"
             android:layout_width="170dp"
             android:layout_height="44dp"
             android:layout_marginTop="19dp"
-            android:orientation="horizontal"
             android:layout_marginEnd="23dp"
-            android:gravity="center"
             android:background="@drawable/bg_detail_add_to_cart_bt"
+            android:gravity="center"
+            android:orientation="horizontal"
             android:src="@drawable/ic_quantity_plus"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:textSize="8sp"
                 android:layout_weight="1"
-                android:gravity="center"
                 android:fontFamily="@font/poppins_600"
+                android:gravity="center"
                 android:text="#2500"
-                android:textColor="#99A0FF"/>
+                android:textColor="#99A0FF"
+                android:textSize="8sp" />
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:textSize="8sp"
                 android:layout_weight="1"
                 android:fontFamily="@font/poppins_600"
                 android:text="ADD TO CART"
-                android:textColor="@color/white"/>
+                android:textColor="@color/white"
+                android:textSize="8sp" />
 
         </LinearLayout>
 

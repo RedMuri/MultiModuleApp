@@ -227,6 +227,7 @@
     <LinearLayout
         android:id="@+id/item_log_out"
         style="@style/ProfileItem"
+        android:layout_marginBottom="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/bt_upload_item"
         app:layout_constraintStart_toStartOf="@id/bt_upload_item"

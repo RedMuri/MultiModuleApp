@@ -60,7 +60,11 @@
     </fragment>
     <fragment
         android:id="@+id/detailFragment"
-        android:name="com.example.redmuriapp.fragments.DetailFragment"
+        android:name="com.example.redmuriapp.detail_page.DetailPageFragment"
         android:label="fragment_detail"
-        tools:layout="@layout/fragment_detail" />
+        tools:layout="@layout/fragment_detail_page" >
+        <argument
+            android:name="LatestItem"
+            app:argType="com.example.redmuriapp.retrofit.LatestItemDto" />
+    </fragment>
 </navigation>

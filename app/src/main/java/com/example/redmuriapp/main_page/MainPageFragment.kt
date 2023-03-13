@@ -7,12 +7,11 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.preference.PreferenceManager
 import com.example.redmuriapp.MainActivity
 import com.example.redmuriapp.databinding.FragmentMainPageBinding
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
+import com.example.redmuriapp.main_page.MainPageFragmentDirections.Companion.actionMainFragmentToDetailFragment
 
 
 class MainPageFragment : Fragment() {
@@ -28,10 +27,10 @@ class MainPageFragment : Fragment() {
     private var errorToast: Toast? = null
 
     private val adapterLatestItems by lazy {
-        LatestItemsAdapter(requireActivity().application)
+        LatestItemsAdapter()
     }
     private val adapterFlashSaleItems by lazy {
-        FlashSaleItemsAdapter(requireActivity().application)
+        FlashSaleItemsAdapter()
     }
 
     override fun onCreateView(
@@ -57,6 +56,13 @@ class MainPageFragment : Fragment() {
             getBothItems()
             observeViewModel()
             setupRecyclerViews()
+        }
+        adapterLatestItems.onItemClickListener = { latestItem ->
+            findNavController().navigate(
+                actionMainFragmentToDetailFragment(
+                    latestItem
+                )
+            )
         }
     }
 

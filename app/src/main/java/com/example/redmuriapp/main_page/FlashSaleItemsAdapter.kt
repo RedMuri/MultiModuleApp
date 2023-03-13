@@ -1,18 +1,13 @@
 package com.example.redmuriapp.main_page
 
-import android.app.Application
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import com.example.redmuriapp.R
 import com.example.redmuriapp.databinding.ItemFlashSaleBinding
 import com.example.redmuriapp.retrofit.FlashSaleItemDto
-import com.squareup.picasso.Picasso
 
-class FlashSaleItemsAdapter(
-    val application: Application,
-) :
+class FlashSaleItemsAdapter() :
     ListAdapter<FlashSaleItemDto, FlashSaleItemsAdapter.FlashSaleItemViewHolder>(FlashSaleItemDiffCallback()) {
 
     class FlashSaleItemViewHolder(val binding: ItemFlashSaleBinding) :
