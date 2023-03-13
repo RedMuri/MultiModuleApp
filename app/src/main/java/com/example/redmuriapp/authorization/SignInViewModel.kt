@@ -20,15 +20,15 @@ class SignInViewModel(application: Application) : AndroidViewModel(application) 
     fun signIn(firstName: String, lastName: String, email: String) {
         val fieldsValid = validateInputSignIn(firstName, lastName, email)
         if (fieldsValid) {
-            _authState.value = Progress
+            _authState.value = AuthProgress
             val user = UserDbModel(firstName, lastName, email)
             viewModelScope.launch {
                 try {
                     usersRepositoryImpl.signIn(user) {
-                        _authState.value = Success(firstName)
+                        _authState.value = AuthSuccess(firstName)
                     }
                 } catch (e: UserAlreadyExistsException){
-                    _authState.value = Error(ERROR_SUCH_USER_EXISTS)
+                    _authState.value = AuthError(ERROR_SUCH_USER_EXISTS)
                 }
             }
 
@@ -37,19 +37,19 @@ class SignInViewModel(application: Application) : AndroidViewModel(application) 
 
     private fun validateInputSignIn(firstName: String, lastName: String, email: String): Boolean {
         if (firstName.isBlank()) {
-            _authState.value = Error(ERROR_EMPTY_FIRST_NAME)
+            _authState.value = AuthError(ERROR_EMPTY_FIRST_NAME)
             return false
         }
         if (lastName.isBlank()) {
-            _authState.value = Error(ERROR_EMPTY_LAST_NAME)
+            _authState.value = AuthError(ERROR_EMPTY_LAST_NAME)
             return false
         }
         if (email.isBlank()) {
-            _authState.value = Error(ERROR_EMPTY_EMAIL)
+            _authState.value = AuthError(ERROR_EMPTY_EMAIL)
             return false
         }
         if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            _authState.value = Error(ERROR_NOT_VALID_EMAIL)
+            _authState.value = AuthError(ERROR_NOT_VALID_EMAIL)
             return false
         }
         return true

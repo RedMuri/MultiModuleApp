@@ -2,6 +2,6 @@ package com.example.redmuriapp.authorization
 
 sealed class AuthState()
 
-object Progress : AuthState()
-class Error(val errorCode: Int): AuthState()
-class Success(val firstName: String): AuthState()
+object AuthProgress : AuthState()
+class AuthError(val errorCode: Int): AuthState()
+class AuthSuccess(val firstName: String): AuthState()

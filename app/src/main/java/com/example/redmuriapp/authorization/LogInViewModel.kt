@@ -17,16 +17,16 @@ class LogInViewModel(application: Application) : AndroidViewModel(application) {
     fun logIn(firstName: String, password: String) {
         val fieldsValid = validateInputLogIn(firstName, password)
         if (fieldsValid) {
-            _authState.value = Progress
+            _authState.value = AuthProgress
             viewModelScope.launch {
                 try {
                     usersRepositoryImpl.logIn(firstName,password) {
-                        _authState.value = Success(firstName)
+                        _authState.value = AuthSuccess(firstName)
                     }
                 } catch (e: UserDoesNotExistsException){
-                    _authState.value = Error(ERROR_USER_DOES_NOT_EXISTS)
+                    _authState.value = AuthError(ERROR_USER_DOES_NOT_EXISTS)
                 } catch (e: WrongPasswordLogInException){
-                    _authState.value = Error(ERROR_WRONG_PASSWORD)
+                    _authState.value = AuthError(ERROR_WRONG_PASSWORD)
                 }
             }
         }
@@ -34,11 +34,11 @@ class LogInViewModel(application: Application) : AndroidViewModel(application) {
 
     private fun validateInputLogIn(firstName: String, password: String): Boolean {
         if (firstName.isBlank()) {
-            _authState.value = Error(ERROR_EMPTY_FIRST_NAME)
+            _authState.value = AuthError(ERROR_EMPTY_FIRST_NAME)
             return false
         }
         if (password.isBlank()) {
-            _authState.value = Error(ERROR_EMPTY_PASSWORD)
+            _authState.value = AuthError(ERROR_EMPTY_PASSWORD)
             return false
         }
         return true

@@ -59,4 +59,6 @@
     <string name="icon_star">Icon star</string>
     <string name="icon_share">Icon share</string>
     <string name="icon_favorite">Icon favorite</string>
+    <string name="item_image">Item image</string>
+    <string name="brands">Brands</string>
 </resources>

@@ -59,16 +59,16 @@ class SignInFragment : Fragment() {
             binding.btSignIn.isEnabled = true
 
             when (it) {
-                is Success -> {
+                is AuthSuccess -> {
                     Toast.makeText(requireContext(), "Success!", Toast.LENGTH_SHORT).show()
                     findNavController().navigate(R.id.action_signInFragment_to_mainFragment)
                     updateSharedPreferences(it.firstName)
                 }
-                is Progress -> {
+                is AuthProgress -> {
                     binding.progressBar.visibility = View.VISIBLE
                     binding.btSignIn.isEnabled = false
                 }
-                is Error -> {
+                is AuthError -> {
                     showError(it.errorCode)
                 }
             }

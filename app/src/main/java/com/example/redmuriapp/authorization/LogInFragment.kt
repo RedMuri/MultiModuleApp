@@ -65,16 +65,16 @@ class LogInFragment : Fragment() {
             binding.btLogIn.isEnabled = true
 
             when (it) {
-                is Success -> {
+                is AuthSuccess -> {
                     Toast.makeText(requireContext(), "Success!", Toast.LENGTH_SHORT).show()
                     findNavController().navigate(R.id.action_logInFragment_to_mainFragment)
                     updateSharedPreferences(it.firstName)
                 }
-                is Progress -> {
+                is AuthProgress -> {
                     binding.progressBar.visibility = View.VISIBLE
                     binding.btLogIn.isEnabled = false
                 }
-                is Error -> {
+                is AuthError -> {
                     showError(it.errorCode)
                 }
             }

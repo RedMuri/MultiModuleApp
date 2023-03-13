@@ -6,11 +6,10 @@ interface ItemsApiService {
 
 
     @GET(LATEST_ENDPOINT)
-    suspend fun getLatestItems()
+    suspend fun getLatestItems(): LatestItemsContainer
 
     @GET(FLASH_SALE_ENDPOINT)
-    suspend fun getFlashSaleItems()
-
+    suspend fun getFlashSaleItems(): FlashSaleItemsContainer
 
     companion object {
         private const val LATEST_ENDPOINT = "cc0071a1-f06e-48fa-9e90-b1c2a61eaca7"
