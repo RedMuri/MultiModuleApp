@@ -5,12 +5,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.LinearSnapHelper
+import androidx.viewpager2.widget.ViewPager2
 import com.example.redmuriapp.databinding.FragmentDetailPageBinding
-import com.example.redmuriapp.main_page.LatestItemsAdapter
 
 
 class DetailPageFragment : Fragment() {
+
+    private val testImage =
+        "https://mlvtgiqzoszz.i.optimole.com/w:auto/h:auto/q:mauto/https://www.lemark.co.uk/wp-content/uploads/Test-Image-800x800.jpg"
+
 
     private val args by navArgs<DetailPageFragmentArgs>()
 
@@ -18,9 +24,14 @@ class DetailPageFragment : Fragment() {
     private val binding: FragmentDetailPageBinding
         get() = _binding ?: throw RuntimeException("FragmentDetailPageBinding == null")
 
-    private val adapterItemImages by lazy {
-        ItemImagesAdapter()
+    private val vpAdapterItemImages by lazy {
+        VpItemImagesAdapter(listOf(args.LatestItem.image_url, testImage))
     }
+    private val rvAdapterItemImages by lazy {
+        RvItemImagesAdapter(listOf(args.LatestItem.image_url, testImage))
+    }
+
+    private var quantity = 1
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,25 +44,52 @@ class DetailPageFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         uploadItemData()
-        setupViewPager()
+        setupImages()
+        bindOnClickListeners()
     }
 
-    private fun setupViewPager() {
-        binding.vpPhotos.adapter = adapterItemImages
-        adapterItemImages.images = listOf(
-            "https://avatars.mds.yandex.net/i?id=653e4ace5119cbfef916f2890c48f1d6794c91ed-6926872-images-thumbs&n=13&exp=1",
-            "https://avatars.mds.yandex.net/i?id=835f93ab5c528912509e77a34898ff43-5018134-images-thumbs&n=13&exp=1",
-            "https://sun9-85.userapi.com/impg/GqVqFLRKJbOWyK9NRt2bDmssR2iVZQQsBunnfA/2ZslYJKru30.jpg?size=1080x720&quality=95&sign=a71e1453b164a8059c20114e3af234b8&c_uniq_tag=Wva_p5JuKSe6GiUS-nHmTsqrnFQTfhByexD6p36nqVE&type=album"
-        )
-        adapterItemImages.notifyDataSetChanged()
+    private fun bindOnClickListeners() {
+        binding.btQuantityPlus.setOnClickListener {
+            quantity++
+            binding.tvBottomItemPrice.text = (args.LatestItem.price * quantity).toString()
+        }
+        binding.btQuantityMinus.setOnClickListener {
+            if (quantity > 1) {
+                quantity--
+                binding.tvBottomItemPrice.text = (args.LatestItem.price * quantity).toString()
+            }
+        }
+        binding.btBack.setOnClickListener {
+            findNavController().popBackStack()
+        }
+    }
+
+    private fun setupImages() {
+        val viewPager = binding.vpPhotos
+        val photoList = binding.rvPhotos
+        viewPager.adapter = vpAdapterItemImages
+        photoList.adapter = rvAdapterItemImages
+        val snapHelper = LinearSnapHelper()
+        snapHelper.attachToRecyclerView(photoList)
+        rvAdapterItemImages.setSelectedPosition(0)
+        viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+                rvAdapterItemImages.setSelectedPosition(position)
+                photoList.smoothScrollToPosition(position)
+            }
+        })
+        rvAdapterItemImages.onItemClickListener = {
+            viewPager.currentItem = it
+        }
     }
 
     private fun uploadItemData() {
         val item = args.LatestItem
         binding.tvItemName.text = item.name
         binding.tvItemPrice.text = item.price.toString()
+        binding.tvBottomItemPrice.text = item.price.toString()
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()

@@ -5,19 +5,17 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.redmuriapp.R
-import com.example.redmuriapp.databinding.ItemImageBinding
+import com.example.redmuriapp.databinding.VpItemImageBinding
 import com.squareup.picasso.Picasso
 
-class ItemImagesAdapter() :
-    Adapter<ItemImagesAdapter.ItemImageViewHolder>() {
+class VpItemImagesAdapter(var images: List<String>) :
+    Adapter<VpItemImagesAdapter.ItemImageViewHolder>() {
 
-    var images: List<String> = listOf()
-
-    class ItemImageViewHolder(val binding: ItemImageBinding) :
+    class ItemImageViewHolder(val binding: VpItemImageBinding) :
         ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemImageViewHolder {
-        val binding = ItemImageBinding
+        val binding = VpItemImageBinding
             .inflate(LayoutInflater.from(parent.context), parent, false)
         return ItemImageViewHolder(binding)
     }

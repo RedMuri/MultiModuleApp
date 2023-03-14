@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    app:strokeWidth="1dp"
+    app:strokeColor="#1A939393"
     android:layout_height="match_parent"
     app:cardCornerRadius="16dp">
 
@@ -11,11 +12,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:contentDescription="@string/item_image"
-        android:scaleType="centerCrop"
+        android:adjustViewBounds="true"
         android:src="@drawable/ic_launcher_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-</androidx.cardview.widget.CardView>
+</com.google.android.material.card.MaterialCardView>
