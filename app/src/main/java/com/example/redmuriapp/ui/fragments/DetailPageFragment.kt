@@ -10,7 +10,6 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.viewpager2.widget.ViewPager2
 import com.example.redmuriapp.databinding.FragmentDetailPageBinding
-import com.example.redmuriapp.detail_page.DetailPageFragmentArgs
 import com.example.redmuriapp.ui.adapters.RvItemImagesAdapter
 import com.example.redmuriapp.ui.adapters.VpItemImagesAdapter
 
@@ -20,7 +19,6 @@ class DetailPageFragment : Fragment() {
     private val testImage =
         "https://mlvtgiqzoszz.i.optimole.com/w:auto/h:auto/q:mauto/https://www.lemark.co.uk/wp-content/uploads/Test-Image-800x800.jpg"
 
-
     private val args by navArgs<DetailPageFragmentArgs>()
 
     private var _binding: FragmentDetailPageBinding? = null
@@ -28,10 +26,10 @@ class DetailPageFragment : Fragment() {
         get() = _binding ?: throw RuntimeException("FragmentDetailPageBinding == null")
 
     private val vpAdapterItemImages by lazy {
-        VpItemImagesAdapter(listOf(args.LatestItem.image_url, testImage))
+        VpItemImagesAdapter(listOf(args.latestItem.image_url, testImage))
     }
     private val rvAdapterItemImages by lazy {
-        RvItemImagesAdapter(listOf(args.LatestItem.image_url, testImage))
+        RvItemImagesAdapter(listOf(args.latestItem.image_url, testImage))
     }
 
     private var quantity = 1
@@ -54,12 +52,12 @@ class DetailPageFragment : Fragment() {
     private fun bindOnClickListeners() {
         binding.btQuantityPlus.setOnClickListener {
             quantity++
-            binding.tvBottomItemPrice.text = (args.LatestItem.price * quantity).toString()
+            binding.tvBottomItemPrice.text = (args.latestItem.price * quantity).toString()
         }
         binding.btQuantityMinus.setOnClickListener {
             if (quantity > 1) {
                 quantity--
-                binding.tvBottomItemPrice.text = (args.LatestItem.price * quantity).toString()
+                binding.tvBottomItemPrice.text = (args.latestItem.price * quantity).toString()
             }
         }
         binding.btBack.setOnClickListener {
@@ -88,7 +86,7 @@ class DetailPageFragment : Fragment() {
     }
 
     private fun uploadItemData() {
-        val item = args.LatestItem
+        val item = args.latestItem
         binding.tvItemName.text = item.name
         binding.tvItemPrice.text = item.price.toString()
         binding.tvBottomItemPrice.text = item.price.toString()

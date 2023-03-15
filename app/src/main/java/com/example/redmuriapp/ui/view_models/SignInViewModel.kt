@@ -1,22 +1,22 @@
 package com.example.redmuriapp.ui.view_models
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.redmuriapp.domain.entities.User
+import com.example.redmuriapp.domain.exceptions.UserAlreadyExistsException
+import com.example.redmuriapp.domain.use_cases.SignInUseCase
 import com.example.redmuriapp.ui.states.AuthError
 import com.example.redmuriapp.ui.states.AuthProgress
 import com.example.redmuriapp.ui.states.AuthState
 import com.example.redmuriapp.ui.states.AuthSuccess
-import com.example.redmuriapp.data.db.UsersRepositoryImpl
-import com.example.redmuriapp.domain.exceptions.UserAlreadyExistsException
-import com.example.redmuriapp.data.db.models.UserDbModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class SignInViewModel(application: Application) : AndroidViewModel(application) {
-
-    private val usersRepositoryImpl = UsersRepositoryImpl(application)
+class SignInViewModel @Inject constructor(
+    private val signInUseCase: SignInUseCase,
+) : ViewModel() {
 
     private var _authState = MutableLiveData<AuthState>()
     val authState: LiveData<AuthState> = _authState
@@ -25,13 +25,13 @@ class SignInViewModel(application: Application) : AndroidViewModel(application) 
         val fieldsValid = validateInputSignIn(firstName, lastName, email)
         if (fieldsValid) {
             _authState.value = AuthProgress
-            val user = UserDbModel(firstName, lastName, email)
+            val user = User(firstName, lastName, email)
             viewModelScope.launch {
                 try {
-                    usersRepositoryImpl.signIn(user) {
+                    signInUseCase.invoke(user) {
                         _authState.value = AuthSuccess(firstName)
                     }
-                } catch (e: UserAlreadyExistsException){
+                } catch (e: UserAlreadyExistsException) {
                     _authState.value = AuthError(ERROR_SUCH_USER_EXISTS)
                 }
             }

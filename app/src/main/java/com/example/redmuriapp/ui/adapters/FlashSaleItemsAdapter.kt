@@ -5,14 +5,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.redmuriapp.databinding.ItemFlashSaleBinding
-import com.example.redmuriapp.data.network.models.FlashSaleItemDto
+import com.example.redmuriapp.domain.entities.FlashSaleItem
 
 class FlashSaleItemsAdapter() :
-    ListAdapter<FlashSaleItemDto, FlashSaleItemsAdapter.FlashSaleItemViewHolder>(
+    ListAdapter<FlashSaleItem, FlashSaleItemsAdapter.FlashSaleItemViewHolder>(
         FlashSaleItemDiffCallback()
     ) {
 
-    var onItemClickListener: ((FlashSaleItemDto) -> Unit)? = null
+    var onItemClickListener: ((FlashSaleItem) -> Unit)? = null
 
     class FlashSaleItemViewHolder(val binding: ItemFlashSaleBinding) :
         ViewHolder(binding.root)

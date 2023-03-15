@@ -4,6 +4,7 @@ plugins {
     id 'com.google.devtools.ksp' version '1.8.0-1.0.8'
     id 'kotlin-parcelize'
     id 'androidx.navigation.safeargs.kotlin'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -27,11 +28,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_19
+        targetCompatibility JavaVersion.VERSION_19
     }
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = '19'
     }
     buildFeatures {
         viewBinding true
@@ -65,4 +66,7 @@ dependencies {
     implementation 'com.squareup.picasso:picasso:2.8'
 
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
+
+    implementation 'com.google.dagger:dagger:2.44'
+    kapt 'com.google.dagger:dagger-compiler:2.44'
 }

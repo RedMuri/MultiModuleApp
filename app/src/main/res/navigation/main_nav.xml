@@ -64,7 +64,7 @@
         android:label="fragment_detail"
         tools:layout="@layout/fragment_detail_page" >
         <argument
-            android:name="LatestItem"
-            app:argType="com.example.redmuriapp.retrofit.LatestItemDto" />
+            android:name="latestItem"
+            app:argType="com.example.redmuriapp.domain.entities.LatestItem" />
     </fragment>
 </navigation>

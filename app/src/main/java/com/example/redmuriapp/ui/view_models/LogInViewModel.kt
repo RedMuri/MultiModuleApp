@@ -1,19 +1,23 @@
 package com.example.redmuriapp.ui.view_models
 
-import android.app.Application
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.redmuriapp.data.db.repositories.UsersRepositoryImpl
+import com.example.redmuriapp.domain.exceptions.UserDoesNotExistsException
+import com.example.redmuriapp.domain.exceptions.WrongPasswordLogInException
+import com.example.redmuriapp.domain.use_cases.LogInUseCase
 import com.example.redmuriapp.ui.states.AuthError
 import com.example.redmuriapp.ui.states.AuthProgress
 import com.example.redmuriapp.ui.states.AuthState
 import com.example.redmuriapp.ui.states.AuthSuccess
-import com.example.redmuriapp.data.db.UsersRepositoryImpl
-import com.example.redmuriapp.domain.exceptions.UserDoesNotExistsException
-import com.example.redmuriapp.domain.exceptions.WrongPasswordLogInException
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class LogInViewModel(application: Application) : AndroidViewModel(application) {
-
-    private val usersRepositoryImpl = UsersRepositoryImpl(application)
+class LogInViewModel @Inject constructor(
+    private val logInUseCase: LogInUseCase,
+) : ViewModel() {
 
     private var _authState = MutableLiveData<AuthState>()
     val authState: LiveData<AuthState> = _authState
@@ -24,7 +28,7 @@ class LogInViewModel(application: Application) : AndroidViewModel(application) {
             _authState.value = AuthProgress
             viewModelScope.launch {
                 try {
-                    usersRepositoryImpl.logIn(firstName,password) {
+                    logInUseCase.invoke(firstName,password) {
                         _authState.value = AuthSuccess(firstName)
                     }
                 } catch (e: UserDoesNotExistsException){

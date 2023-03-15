@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    tools:context=".ui.fragments.ProfileFragment"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".ui.fragments.ProfileFragment">
 
 
     <TextView
@@ -13,8 +13,8 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/montserrat_700"
         android:text="@string/profile"
-        android:textSize="15sp"
         android:textColor="@color/black"
+        android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -28,8 +28,8 @@
         android:layout_marginStart="16dp"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:clickable="true"
-        android:focusable="true"
         android:contentDescription="@string/back_arrow"
+        android:focusable="true"
         android:src="@drawable/ic_back"
         app:layout_constraintBottom_toBottomOf="@+id/tv_profile"
         app:layout_constraintStart_toStartOf="parent"
@@ -41,8 +41,8 @@
         android:layout_height="66dp"
         android:src="@drawable/ic_back"
         app:civ_border_color="#FF000000"
-        app:layout_constraintBottom_toTopOf="@id/tv_change_photo"
         app:civ_border_width="2dp"
+        app:layout_constraintBottom_toTopOf="@id/tv_change_photo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_profile" />
@@ -54,9 +54,9 @@
         android:background="@drawable/bg_click_text"
         android:clickable="true"
         android:focusable="true"
-        android:textColor="@color/profile_change_photo"
         android:fontFamily="@font/montserrat_500"
         android:text="@string/change_photo"
+        android:textColor="@color/profile_change_photo"
         android:textSize="11sp"
         app:layout_constraintBottom_toTopOf="@id/tv_user_name"
         app:layout_constraintEnd_toEndOf="@+id/iv_profile"
@@ -207,8 +207,8 @@
     <LinearLayout
         android:id="@+id/item_help"
         style="@style/ProfileItem"
-        app:layout_constraintEnd_toEndOf="@id/bt_upload_item"
         app:layout_constraintBottom_toTopOf="@id/item_log_out"
+        app:layout_constraintEnd_toEndOf="@id/bt_upload_item"
         app:layout_constraintStart_toStartOf="@id/bt_upload_item"
         app:layout_constraintTop_toBottomOf="@id/item_restore_purchase"
         tools:ignore="UseCompoundDrawables">

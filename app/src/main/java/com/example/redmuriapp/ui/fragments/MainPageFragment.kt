@@ -1,5 +1,6 @@
 package com.example.redmuriapp.ui.fragments
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,16 +10,19 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.preference.PreferenceManager
-import com.example.redmuriapp.ui.activities.MainActivity
+import com.example.redmuriapp.ui.RedMuriApp
 import com.example.redmuriapp.databinding.FragmentMainPageBinding
-import com.example.redmuriapp.main_page.MainPageFragmentDirections.Companion.actionMainFragmentToDetailFragment
-import com.example.redmuriapp.data.network.models.LatestItemDto
+import com.example.redmuriapp.domain.entities.LatestItem
+import com.example.redmuriapp.ui.activities.MainActivity
 import com.example.redmuriapp.ui.adapters.FlashSaleItemsAdapter
 import com.example.redmuriapp.ui.adapters.LatestItemsAdapter
+import com.example.redmuriapp.ui.fragments.MainPageFragmentDirections.Companion.actionMainFragmentToDetailFragment
 import com.example.redmuriapp.ui.states.MainError
 import com.example.redmuriapp.ui.states.MainProgress
 import com.example.redmuriapp.ui.states.MainSuccess
 import com.example.redmuriapp.ui.view_models.MainPageViewModel
+import com.example.redmuriapp.ui.view_models.ViewModelFactory
+import javax.inject.Inject
 
 
 class MainPageFragment : Fragment() {
@@ -27,10 +31,6 @@ class MainPageFragment : Fragment() {
     private val binding: FragmentMainPageBinding
         get() = _binding ?: throw RuntimeException("FragmentMainPageBinding == null")
 
-    private val mainPageViewModel by lazy {
-        ViewModelProvider(requireActivity())[MainPageViewModel::class.java]
-    }
-
     private var errorToast: Toast? = null
 
     private val adapterLatestItems by lazy {
@@ -38,6 +38,22 @@ class MainPageFragment : Fragment() {
     }
     private val adapterFlashSaleItems by lazy {
         FlashSaleItemsAdapter()
+    }
+
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
+
+    private val mainPageViewModel by lazy {
+        ViewModelProvider(this,viewModelFactory)[MainPageViewModel::class.java]
+    }
+
+    private val component by lazy {
+        (requireActivity().application as RedMuriApp).component
+    }
+
+    override fun onAttach(context: Context) {
+        component.inject(this)
+        super.onAttach(context)
     }
 
     override fun onCreateView(
@@ -74,7 +90,7 @@ class MainPageFragment : Fragment() {
         adapterFlashSaleItems.onItemClickListener = { flashSaleItem ->
             findNavController().navigate(
                 actionMainFragmentToDetailFragment(
-                    LatestItemDto(flashSaleItem.category,flashSaleItem.name,flashSaleItem.price,flashSaleItem.image_url)
+                    LatestItem(flashSaleItem.category,flashSaleItem.name,flashSaleItem.price,flashSaleItem.image_url)
                 )
             )
         }

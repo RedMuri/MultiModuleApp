@@ -5,12 +5,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.redmuriapp.databinding.ItemLatestBinding
-import com.example.redmuriapp.data.network.models.LatestItemDto
+import com.example.redmuriapp.domain.entities.LatestItem
 
 class LatestItemsAdapter() :
-    ListAdapter<LatestItemDto, LatestItemsAdapter.LatestItemViewHolder>(LatestItemDiffCallback()) {
+    ListAdapter<LatestItem, LatestItemsAdapter.LatestItemViewHolder>(LatestItemDiffCallback()) {
 
-    var onItemClickListener: ((LatestItemDto) -> Unit)? = null
+    var onItemClickListener: ((LatestItem) -> Unit)? = null
 
     class LatestItemViewHolder(val binding: ItemLatestBinding) :
         ViewHolder(binding.root)

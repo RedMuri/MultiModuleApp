@@ -1,5 +1,6 @@
 package com.example.redmuriapp.ui.fragments
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,11 +16,14 @@ import androidx.navigation.fragment.findNavController
 import androidx.preference.PreferenceManager
 import com.example.redmuriapp.ui.activities.MainActivity
 import com.example.redmuriapp.R
+import com.example.redmuriapp.ui.RedMuriApp
 import com.example.redmuriapp.ui.states.AuthError
 import com.example.redmuriapp.ui.states.AuthProgress
 import com.example.redmuriapp.ui.states.AuthSuccess
 import com.example.redmuriapp.ui.view_models.SignInViewModel
 import com.example.redmuriapp.databinding.FragmentSignInBinding
+import com.example.redmuriapp.ui.view_models.ViewModelFactory
+import javax.inject.Inject
 
 
 class SignInFragment : Fragment() {
@@ -28,9 +32,23 @@ class SignInFragment : Fragment() {
     private val binding: FragmentSignInBinding
         get() = _binding ?: throw RuntimeException("FragmentSignInBinding == null")
 
-    private val signInViewModel by lazy { ViewModelProvider(requireActivity())[SignInViewModel::class.java] }
-
     private var errorToast: Toast? = null
+
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
+
+    private val signInViewModel by lazy {
+        ViewModelProvider(this,viewModelFactory)[SignInViewModel::class.java]
+    }
+
+    private val component by lazy {
+        (requireActivity().application as RedMuriApp).component
+    }
+
+    override fun onAttach(context: Context) {
+        component.inject(this)
+        super.onAttach(context)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

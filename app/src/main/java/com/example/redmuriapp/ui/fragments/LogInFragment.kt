@@ -1,5 +1,6 @@
 package com.example.redmuriapp.ui.fragments
 
+import android.content.Context
 import android.os.Bundle
 import android.text.method.PasswordTransformationMethod
 import android.view.LayoutInflater
@@ -16,11 +17,14 @@ import androidx.navigation.fragment.findNavController
 import androidx.preference.PreferenceManager
 import com.example.redmuriapp.ui.activities.MainActivity
 import com.example.redmuriapp.R
+import com.example.redmuriapp.ui.RedMuriApp
 import com.example.redmuriapp.ui.states.AuthError
 import com.example.redmuriapp.ui.states.AuthProgress
 import com.example.redmuriapp.ui.states.AuthSuccess
 import com.example.redmuriapp.ui.view_models.LogInViewModel
 import com.example.redmuriapp.databinding.FragmentLogInBinding
+import com.example.redmuriapp.ui.view_models.ViewModelFactory
+import javax.inject.Inject
 
 
 class LogInFragment : Fragment() {
@@ -29,9 +33,23 @@ class LogInFragment : Fragment() {
     private val binding: FragmentLogInBinding
         get() = _binding ?: throw RuntimeException("FragmentLogInBinding == null")
 
-    private val logInViewModel by lazy { ViewModelProvider(requireActivity())[LogInViewModel::class.java] }
-
     private var errorToast: Toast? = null
+
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
+
+    private val logInViewModel by lazy {
+        ViewModelProvider(this,viewModelFactory)[LogInViewModel::class.java]
+    }
+
+    private val component by lazy {
+        (requireActivity().application as RedMuriApp).component
+    }
+
+    override fun onAttach(context: Context) {
+        component.inject(this)
+        super.onAttach(context)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

@@ -2,8 +2,9 @@ package com.example.redmuriapp.data.mappers
 
 import com.example.redmuriapp.data.db.models.UserDbModel
 import com.example.redmuriapp.domain.entities.User
+import javax.inject.Inject
 
-class UsersMapper {
+class UsersMapper @Inject constructor() {
 
     fun userDbModelToEntity(userDbModel: UserDbModel) = User(
         id = userDbModel.id,

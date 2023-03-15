@@ -1,5 +1,8 @@
 package com.example.redmuriapp.data.network.models
 
+import com.google.gson.annotations.SerializedName
+
 data class LatestItemsContainerDto(
-    val latest: List<LatestItemDto>
+    @SerializedName("latest")
+    val latestItemsList: List<LatestItemDto>
 )

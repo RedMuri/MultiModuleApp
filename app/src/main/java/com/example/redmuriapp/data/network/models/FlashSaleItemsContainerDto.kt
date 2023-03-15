@@ -1,7 +1,8 @@
 package com.example.redmuriapp.data.network.models
 
-import com.example.redmuriapp.data.network.models.FlashSaleItemDto
+import com.google.gson.annotations.SerializedName
 
 data class FlashSaleItemsContainerDto(
-    val flash_sale: List<FlashSaleItemDto>
+    @SerializedName("flash_sale")
+    val flashSaleItemsList: List<FlashSaleItemDto>
 )

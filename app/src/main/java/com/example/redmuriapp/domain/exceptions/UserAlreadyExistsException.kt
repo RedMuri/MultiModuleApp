@@ -1,3 +1,5 @@
 package com.example.redmuriapp.domain.exceptions
 
-class UserAlreadyExistsException: Exception()
+import javax.inject.Inject
+
+class UserAlreadyExistsException @Inject constructor() : Exception()

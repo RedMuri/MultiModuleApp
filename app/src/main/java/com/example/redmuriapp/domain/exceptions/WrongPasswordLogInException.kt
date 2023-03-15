@@ -1,3 +1,5 @@
 package com.example.redmuriapp.domain.exceptions
 
-class WrongPasswordLogInException: Exception()
+import javax.inject.Inject
+
+class WrongPasswordLogInException @Inject constructor(): Exception()

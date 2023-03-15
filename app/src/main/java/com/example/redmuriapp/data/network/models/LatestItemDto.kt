@@ -1,12 +1,15 @@
 package com.example.redmuriapp.data.network.models
 
-import android.os.Parcelable
-import kotlinx.parcelize.Parcelize
+import com.google.gson.annotations.SerializedName
 
-@Parcelize
+
 data class LatestItemDto(
+    @SerializedName("category")
     val category: String,
+    @SerializedName("name")
     val name: String,
+    @SerializedName("price")
     val price: Double,
-    val image_url: String,
-) : Parcelable
+    @SerializedName("image_url")
+    val imageUrl: String,
+)
