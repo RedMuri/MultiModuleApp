@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.preference.PreferenceManager
+import com.example.redmuriapp.R
 import com.example.redmuriapp.ui.RedMuriApp
 import com.example.redmuriapp.databinding.FragmentMainPageBinding
 import com.example.redmuriapp.domain.entities.LatestItem
@@ -22,6 +23,7 @@ import com.example.redmuriapp.ui.states.MainProgress
 import com.example.redmuriapp.ui.states.MainSuccess
 import com.example.redmuriapp.ui.view_models.MainPageViewModel
 import com.example.redmuriapp.ui.view_models.ViewModelFactory
+import com.squareup.picasso.Picasso
 import javax.inject.Inject
 
 
@@ -44,7 +46,7 @@ class MainPageFragment : Fragment() {
     lateinit var viewModelFactory: ViewModelFactory
 
     private val mainPageViewModel by lazy {
-        ViewModelProvider(this,viewModelFactory)[MainPageViewModel::class.java]
+        ViewModelProvider(this, viewModelFactory)[MainPageViewModel::class.java]
     }
 
     private val component by lazy {
@@ -90,7 +92,12 @@ class MainPageFragment : Fragment() {
         adapterFlashSaleItems.onItemClickListener = { flashSaleItem ->
             findNavController().navigate(
                 actionMainFragmentToDetailFragment(
-                    LatestItem(flashSaleItem.category,flashSaleItem.name,flashSaleItem.price,flashSaleItem.image_url)
+                    LatestItem(
+                        flashSaleItem.category,
+                        flashSaleItem.name,
+                        flashSaleItem.price,
+                        flashSaleItem.image_url
+                    )
                 )
             )
         }
@@ -105,10 +112,19 @@ class MainPageFragment : Fragment() {
         mainPageViewModel.getBothItems()
     }
 
+    private fun uploadProfileImage(imageUrl: String) {
+        Picasso.get().load(imageUrl)
+            .into(binding.ivProfileImage)
+    }
+
     private fun observeViewModel() {
         with(mainPageViewModel) {
             userData.observe(viewLifecycleOwner) {
                 binding.tvLocation.text = it.location
+                if (it.profileImage != null) {
+                    uploadProfileImage(it.profileImage!!)
+                } else
+                    binding.ivProfileImage.setImageResource(R.drawable.default_profile_image)
             }
             bothItems.observe(viewLifecycleOwner) {
                 adapterLatestItems.submitList(it.first)

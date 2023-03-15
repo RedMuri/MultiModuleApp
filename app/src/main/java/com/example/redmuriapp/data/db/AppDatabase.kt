@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.redmuriapp.data.db.models.UserDbModel
 
-@Database(entities = [UserDbModel::class], version = 4, exportSchema = false)
+@Database(entities = [UserDbModel::class], version = 5, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
 
     companion object {

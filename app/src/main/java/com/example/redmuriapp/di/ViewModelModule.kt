@@ -3,6 +3,7 @@ package com.example.redmuriapp.di
 import androidx.lifecycle.ViewModel
 import com.example.redmuriapp.ui.view_models.LogInViewModel
 import com.example.redmuriapp.ui.view_models.MainPageViewModel
+import com.example.redmuriapp.ui.view_models.ProfileViewModel
 import com.example.redmuriapp.ui.view_models.SignInViewModel
 import dagger.Binds
 import dagger.Module
@@ -25,5 +26,10 @@ interface ViewModelModule {
     @IntoMap
     @ViewModelKey(MainPageViewModel::class)
     fun bindMainPageViewModel(viewModel: MainPageViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(ProfileViewModel::class)
+    fun bindProfileViewModel(viewModel: ProfileViewModel): ViewModel
 
 }
