@@ -2,8 +2,8 @@ package com.example.redmuriapp.data.mappers
 
 import com.example.redmuriapp.domain.entities.FlashSaleItem
 import com.example.redmuriapp.domain.entities.LatestItem
-import com.example.redmuriapp.retrofit.FlashSaleItemDto
-import com.example.redmuriapp.retrofit.LatestItemDto
+import com.example.redmuriapp.data.network.models.FlashSaleItemDto
+import com.example.redmuriapp.data.network.models.LatestItemDto
 
 class ItemsMapper {
 

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.example.redmuriapp.main_page.MainPageFragment"
+        android:name="com.example.redmuriapp.ui.fragments.MainPageFragment"
         android:label="fragment_main"
         tools:layout="@layout/fragment_main_page" >
         <action
@@ -21,7 +21,7 @@
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.example.redmuriapp.fragments.ProfileFragment"
+        android:name="com.example.redmuriapp.ui.fragments.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" >
         <action
@@ -32,7 +32,7 @@
     </fragment>
     <fragment
         android:id="@+id/signInFragment"
-        android:name="com.example.redmuriapp.authorization.SignInFragment"
+        android:name="com.example.redmuriapp.ui.fragments.SignInFragment"
         android:label="fragment_sign_in"
         tools:layout="@layout/fragment_sign_in" >
         <action
@@ -46,7 +46,7 @@
     </fragment>
     <fragment
         android:id="@+id/logInFragment"
-        android:name="com.example.redmuriapp.authorization.LogInFragment"
+        android:name="com.example.redmuriapp.ui.fragments.LogInFragment"
         android:label="fragment_log_in"
         tools:layout="@layout/fragment_log_in" >
         <action
@@ -60,7 +60,7 @@
     </fragment>
     <fragment
         android:id="@+id/detailFragment"
-        android:name="com.example.redmuriapp.detail_page.DetailPageFragment"
+        android:name="com.example.redmuriapp.ui.fragments.DetailPageFragment"
         android:label="fragment_detail"
         tools:layout="@layout/fragment_detail_page" >
         <argument

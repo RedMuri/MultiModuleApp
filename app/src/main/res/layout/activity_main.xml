@@ -14,7 +14,7 @@
         android:layout_weight="1"
         app:defaultNavHost="true"
         app:navGraph="@navigation/main_nav"
-        tools:context=".MainActivity"
+        tools:context=".ui.activities.MainActivity"
         tools:layout="@layout/fragment_main_page" />
 
 
