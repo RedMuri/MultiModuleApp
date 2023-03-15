@@ -3,6 +3,7 @@ package com.example.redmuriapp.data.db.repositories
 import android.app.Application
 import com.example.redmuriapp.data.db.AppDatabase
 import com.example.redmuriapp.data.db.UsersDao
+import com.example.redmuriapp.data.db.models.UserDbModel
 import com.example.redmuriapp.data.mappers.UsersMapper
 import com.example.redmuriapp.domain.exceptions.UserAlreadyExistsException
 import com.example.redmuriapp.domain.exceptions.UserDoesNotExistsException
@@ -14,7 +15,7 @@ import javax.inject.Inject
 
 class UsersRepositoryImpl @Inject constructor(
     private val usersDao: UsersDao,
-    private val usersMapper: UsersMapper
+    private val usersMapper: UsersMapper,
 ) : UsersRepository {
 
     @Throws(UserAlreadyExistsException::class)
@@ -42,5 +43,12 @@ class UsersRepositoryImpl @Inject constructor(
         if (userDbModel != null) {
             return usersMapper.userDbModelToEntity(userDbModel)
         } else throw UserNotFoundException()
+    }
+
+    override suspend fun editUserImage(firstName: String, imageUrl: String) {
+        val existingUser = usersDao.getUserByFirstName(firstName)
+        if (existingUser != null) {
+            usersDao.editUser(existingUser.copy(profileImage = imageUrl))
+        }
     }
 }

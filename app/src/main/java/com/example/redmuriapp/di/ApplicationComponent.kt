@@ -4,6 +4,7 @@ import android.app.Application
 import com.example.redmuriapp.ui.RedMuriApp
 import com.example.redmuriapp.ui.fragments.LogInFragment
 import com.example.redmuriapp.ui.fragments.MainPageFragment
+import com.example.redmuriapp.ui.fragments.ProfileFragment
 import com.example.redmuriapp.ui.fragments.SignInFragment
 import dagger.BindsInstance
 import dagger.Component
@@ -18,6 +19,8 @@ interface ApplicationComponent {
     fun inject(signInFragment: SignInFragment)
 
     fun inject(mainPageFragment: MainPageFragment)
+
+    fun inject(profileFragment: ProfileFragment)
 
     @Component.Factory
     interface ApplicationComponentFactory {

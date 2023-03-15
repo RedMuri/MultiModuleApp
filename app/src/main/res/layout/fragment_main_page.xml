@@ -63,13 +63,12 @@
                 app:layout_constraintTop_toTopOf="@+id/tv_title1" />
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/circleImageView"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
+                android:id="@+id/iv_profile_image"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
                 android:layout_marginEnd="32dp"
                 android:contentDescription="@string/user_profile_picture"
-                android:src="@drawable/ic_back"
-                app:civ_border_width="1dp"
+                tools:src="@drawable/default_profile_image"
                 app:layout_constraintBottom_toBottomOf="@+id/tv_title1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/tv_title1" />
@@ -79,12 +78,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="@drawable/bg_click_text"
                 android:fontFamily="@font/poppins_400"
                 android:text="@string/location"
                 android:textSize="11sp"
                 app:layout_constraintEnd_toStartOf="@id/iv_location_down"
-                app:layout_constraintStart_toStartOf="@+id/circleImageView"
-                app:layout_constraintTop_toBottomOf="@+id/circleImageView" />
+                app:layout_constraintStart_toStartOf="@+id/iv_profile_image"
+                app:layout_constraintTop_toBottomOf="@+id/iv_profile_image" />
 
             <ImageView
                 android:id="@+id/iv_location_down"
@@ -94,7 +96,7 @@
                 android:contentDescription="@string/down_arrow"
                 android:src="@drawable/ic_down_arrow"
                 app:layout_constraintBottom_toBottomOf="@+id/tv_location"
-                app:layout_constraintEnd_toEndOf="@+id/circleImageView"
+                app:layout_constraintEnd_toEndOf="@+id/iv_profile_image"
                 app:layout_constraintStart_toEndOf="@+id/tv_location"
                 app:layout_constraintTop_toTopOf="@+id/tv_location" />
 
@@ -262,6 +264,9 @@
                 android:id="@+id/tv_view_all_latest"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@drawable/bg_click_text"
+                android:clickable="true"
+                android:focusable="true"
                 android:layout_marginEnd="11dp"
                 android:fontFamily="@font/poppins_500"
                 android:text="@string/view_all"
@@ -308,6 +313,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="11dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="@drawable/bg_click_text"
                 android:fontFamily="@font/poppins_500"
                 android:text="@string/view_all"
                 android:textSize="11sp"
@@ -344,6 +352,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="11dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="@drawable/bg_click_text"
                 android:fontFamily="@font/poppins_500"
                 android:text="@string/view_all"
                 android:textSize="11sp"

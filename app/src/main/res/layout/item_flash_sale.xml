@@ -3,6 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="208dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="@drawable/bg_ripple_effect"
     android:layout_height="265dp"
     android:layout_marginStart="11dp"
     app:cardCornerRadius="9dp"
@@ -26,11 +29,10 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/iv_seller"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_margin="7dp"
-            app:civ_border_width="1dp"
-            android:src="@drawable/ic_kids"
+            android:src="@drawable/default_profile_image"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -59,7 +61,7 @@
             android:paddingHorizontal="10dp"
             android:paddingTop="2dp"
             android:textColor="@color/black"
-            android:textSize="9sp"
+            android:textSize="10sp"
             app:layout_constraintBottom_toTopOf="@+id/tv_item_name"
             app:layout_constraintStart_toStartOf="@+id/tv_item_price"
             tools:text="Phones" />
@@ -71,7 +73,7 @@
             android:fontFamily="@font/poppins_600"
             android:maxLines="2"
             android:textColor="@color/white"
-            android:textSize="12sp"
+            android:textSize="13sp"
             app:layout_constraintBottom_toTopOf="@+id/tv_item_price"
             app:layout_constraintStart_toStartOf="@+id/tv_item_price"
             tools:text="Samsung S10" />
@@ -84,7 +86,7 @@
             android:layout_marginBottom="12dp"
             android:fontFamily="@font/poppins_600"
             android:textColor="@color/white"
-            android:textSize="10sp"
+            android:textSize="11sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             tools:text="$ 180,000" />

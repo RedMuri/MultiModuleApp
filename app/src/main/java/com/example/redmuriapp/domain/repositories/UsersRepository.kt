@@ -9,4 +9,6 @@ interface UsersRepository {
     suspend fun logIn(firstName: String, password: String, callback: () -> Unit)
 
     suspend fun getUser(firstName: String): User
+
+    suspend fun editUserImage(firstName: String, imageUrl: String)
 }
