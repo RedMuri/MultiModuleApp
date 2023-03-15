@@ -1,16 +1,25 @@
 package com.example.redmuriapp.retrofit
 
-import kotlinx.coroutines.delay
+import com.example.redmuriapp.data.mappers.ItemsMapper
+import com.example.redmuriapp.domain.entities.FlashSaleItem
+import com.example.redmuriapp.domain.entities.LatestItem
+import com.example.redmuriapp.domain.repositories.ItemsRepository
 
-class ItemsRepositoryImpl() {
+class ItemsRepositoryImpl() : ItemsRepository {
+
+    private val itemsMapper = ItemsMapper()
 
     private val itemsApiService = ItemsApiFactory.itemsApiService
 
-    suspend fun getLatestItems(): List<LatestItemDto> {
-        return itemsApiService.getLatestItems().latest
+    override suspend fun getLatestItems(): List<LatestItem> {
+        return itemsApiService.getLatestItemsContainer().latest.map {
+            itemsMapper.latestItemDtoToEntity(it)
+        }
     }
 
-    suspend fun getFlashSaleItems(): List<FlashSaleItemDto> {
-        return itemsApiService.getFlashSaleItems().flash_sale
+    override suspend fun getFlashSaleItems(): List<FlashSaleItem> {
+        return itemsApiService.getFlashSaleItemsContainer().flash_sale.map {
+            itemsMapper.flashSaleItemDtoToEntity(it)
+        }
     }
 }

@@ -27,6 +27,8 @@ class LogInFragment : Fragment() {
 
     private val logInViewModel by lazy { ViewModelProvider(requireActivity())[LogInViewModel::class.java] }
 
+    private var errorToast: Toast? = null
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
@@ -44,8 +46,8 @@ class LogInFragment : Fragment() {
 
     private fun bindClickListeners() {
         binding.btLogIn.setOnClickListener {
-            val firstName = binding.etFirstName.text.toString()
-            val password = binding.etPassword.text.toString()
+            val firstName = binding.etFirstName.text.toString().trim()
+            val password = binding.etPassword.text.toString().trim()
             logInViewModel.logIn(firstName, password)
         }
         binding.btHidePassword.setOnClickListener {
@@ -176,10 +178,12 @@ class LogInFragment : Fragment() {
     }
 
     private fun showErrorToast(errorText: String) {
-        Toast.makeText(
+        errorToast?.cancel()
+        errorToast = Toast.makeText(
             requireContext(),
             errorText, Toast.LENGTH_SHORT
-        ).show()
+        )
+        errorToast?.show()
     }
 
     override fun onDestroyView() {

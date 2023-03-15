@@ -26,6 +26,8 @@ class SignInFragment : Fragment() {
 
     private val signInViewModel by lazy { ViewModelProvider(requireActivity())[SignInViewModel::class.java] }
 
+    private var errorToast: Toast? = null
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
@@ -43,9 +45,9 @@ class SignInFragment : Fragment() {
 
     private fun bindClickListeners() {
         binding.btSignIn.setOnClickListener {
-            val firstName = binding.etFirstName.text.toString()
-            val lastName = binding.etLastName.text.toString()
-            val email = binding.etEmail.text.toString()
+            val firstName = binding.etFirstName.text.toString().trim()
+            val lastName = binding.etLastName.text.toString().trim()
+            val email = binding.etEmail.text.toString().trim()
             signInViewModel.signIn(firstName, lastName, email)
         }
         binding.tvLogIn.setOnClickListener {
@@ -171,10 +173,12 @@ class SignInFragment : Fragment() {
     }
 
     private fun showErrorToast(errorText: String) {
-        Toast.makeText(
+        errorToast?.cancel()
+        errorToast = Toast.makeText(
             requireContext(),
             errorText, Toast.LENGTH_SHORT
-        ).show()
+        )
+        errorToast?.show()
     }
 
     override fun onDestroyView() {

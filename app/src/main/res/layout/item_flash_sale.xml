@@ -2,8 +2,8 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="174dp"
-    android:layout_height="221dp"
+    android:layout_width="208dp"
+    android:layout_height="265dp"
     android:layout_marginStart="11dp"
     app:cardCornerRadius="9dp"
     tools:ignore="SmallSp">

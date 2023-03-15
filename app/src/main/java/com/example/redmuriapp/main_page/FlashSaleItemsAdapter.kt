@@ -6,9 +6,12 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.redmuriapp.databinding.ItemFlashSaleBinding
 import com.example.redmuriapp.retrofit.FlashSaleItemDto
+import com.example.redmuriapp.retrofit.LatestItemDto
 
 class FlashSaleItemsAdapter() :
     ListAdapter<FlashSaleItemDto, FlashSaleItemsAdapter.FlashSaleItemViewHolder>(FlashSaleItemDiffCallback()) {
+
+    var onItemClickListener: ((FlashSaleItemDto) -> Unit)? = null
 
     class FlashSaleItemViewHolder(val binding: ItemFlashSaleBinding) :
         ViewHolder(binding.root)
@@ -31,6 +34,9 @@ class FlashSaleItemsAdapter() :
 //                    .load(image_url)
 //                    .placeholder(R.drawable.ic_apple)
 //                    .into(ivItemImage)
+                root.setOnClickListener {
+                    onItemClickListener?.invoke(this)
+                }
             }
         }
     }

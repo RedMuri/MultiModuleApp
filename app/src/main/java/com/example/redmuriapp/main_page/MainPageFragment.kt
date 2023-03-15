@@ -12,6 +12,7 @@ import androidx.preference.PreferenceManager
 import com.example.redmuriapp.MainActivity
 import com.example.redmuriapp.databinding.FragmentMainPageBinding
 import com.example.redmuriapp.main_page.MainPageFragmentDirections.Companion.actionMainFragmentToDetailFragment
+import com.example.redmuriapp.retrofit.LatestItemDto
 
 
 class MainPageFragment : Fragment() {
@@ -61,6 +62,13 @@ class MainPageFragment : Fragment() {
             findNavController().navigate(
                 actionMainFragmentToDetailFragment(
                     latestItem
+                )
+            )
+        }
+        adapterFlashSaleItems.onItemClickListener = { flashSaleItem ->
+            findNavController().navigate(
+                actionMainFragmentToDetailFragment(
+                    LatestItemDto(flashSaleItem.category,flashSaleItem.name,flashSaleItem.price,flashSaleItem.image_url)
                 )
             )
         }

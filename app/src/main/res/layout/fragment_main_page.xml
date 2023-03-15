@@ -141,7 +141,7 @@
                         android:id="@+id/bt_category_phones"
                         style="@style/MainCategoryIcon"
                         android:layout_marginStart="15dp"
-                        android:layout_marginTop="18dp"
+                        android:layout_marginTop="20dp"
                         android:contentDescription="@string/phones"
                         android:src="@drawable/ic_phones"
                         app:layout_constraintEnd_toStartOf="@id/bt_category_headphones"
@@ -254,7 +254,7 @@
                 android:fontFamily="@font/poppins_500"
                 android:text="@string/latest"
                 android:textColor="@color/black"
-                android:textSize="15sp"
+                android:textSize="17sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/categories" />
 
@@ -265,7 +265,7 @@
                 android:layout_marginEnd="11dp"
                 android:fontFamily="@font/poppins_500"
                 android:text="@string/view_all"
-                android:textSize="9sp"
+                android:textSize="11sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/categories"
                 app:layout_constraintTop_toTopOf="@id/tv_latest" />
@@ -285,6 +285,8 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_latest"
                 tools:listitem="@layout/item_latest" />
 
@@ -297,7 +299,7 @@
                 android:fontFamily="@font/poppins_500"
                 android:text="@string/flash_sale"
                 android:textColor="@color/black"
-                android:textSize="15sp"
+                android:textSize="17sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/rv_latest" />
 
@@ -308,7 +310,7 @@
                 android:layout_marginEnd="11dp"
                 android:fontFamily="@font/poppins_500"
                 android:text="@string/view_all"
-                android:textSize="9sp"
+                android:textSize="11sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/categories"
                 app:layout_constraintTop_toTopOf="@id/tv_flash_sale" />
@@ -319,6 +321,8 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_flash_sale"
                 tools:listitem="@layout/item_flash_sale" />
 
@@ -331,7 +335,7 @@
                 android:fontFamily="@font/poppins_500"
                 android:text="@string/brands"
                 android:textColor="@color/black"
-                android:textSize="15sp"
+                android:textSize="17sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/rv_flash_sale" />
 
@@ -342,7 +346,7 @@
                 android:layout_marginEnd="11dp"
                 android:fontFamily="@font/poppins_500"
                 android:text="@string/view_all"
-                android:textSize="9sp"
+                android:textSize="11sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/categories"
                 app:layout_constraintTop_toTopOf="@id/tv_brands" />
@@ -353,6 +357,8 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_brands"
                 tools:listitem="@layout/item_brands" />
 

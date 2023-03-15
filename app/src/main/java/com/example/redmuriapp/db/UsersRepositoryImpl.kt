@@ -1,26 +1,27 @@
 package com.example.redmuriapp.db
 
 import android.app.Application
-import kotlinx.coroutines.delay
+import com.example.redmuriapp.data.mappers.UsersMapper
+import com.example.redmuriapp.domain.entities.User
+import com.example.redmuriapp.domain.repositories.UsersRepository
 
-class UsersRepositoryImpl(application: Application) {
+class UsersRepositoryImpl(application: Application): UsersRepository{
 
     private val authDao = AppDatabase.getInstance(application).usersDao()
+    private val usersMapper = UsersMapper()
 
     @Throws(UserAlreadyExistsException::class)
-    suspend fun signIn(user: UserDbModel, callback: () -> Unit) {
+    override suspend fun signIn(user: User, callback: () -> Unit) {
         val existingUser = authDao.getUserByFirstName(user.firstName)
-        delay(1000)
         if (existingUser == null) {
-            authDao.addUser(user)
+            authDao.addUser(usersMapper.userEntityToDbModel(user))
             callback.invoke()
         } else throw UserAlreadyExistsException()
     }
 
     @Throws(UserDoesNotExistsException::class, WrongPasswordLogInException::class)
-    suspend fun logIn(firstName: String, password: String, callback: () -> Unit) {
+    override suspend fun logIn(firstName: String, password: String, callback: () -> Unit) {
         val existingUser = authDao.getUserByFirstName(firstName)
-        delay(1000)
         if (existingUser != null) {
             if (existingUser.password == password) {
                 callback.invoke()
@@ -29,11 +30,10 @@ class UsersRepositoryImpl(application: Application) {
     }
 
     @Throws(UserNotFoundException::class)
-    suspend fun getUser(firstName: String): UserDbModel {
-        val user = authDao.getUserByFirstName(firstName)
-        delay(1000)
-        if (user != null) {
-            return user
+    override suspend fun getUser(firstName: String): User {
+        val userDbModel = authDao.getUserByFirstName(firstName)
+        if (userDbModel != null) {
+            return usersMapper.userDbModelToEntity(userDbModel)
         } else throw UserNotFoundException()
     }
 }

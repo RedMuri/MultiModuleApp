@@ -4,12 +4,11 @@ import retrofit2.http.GET
 
 interface ItemsApiService {
 
-
     @GET(LATEST_ENDPOINT)
-    suspend fun getLatestItems(): LatestItemsContainer
+    suspend fun getLatestItemsContainer(): LatestItemsContainer
 
     @GET(FLASH_SALE_ENDPOINT)
-    suspend fun getFlashSaleItems(): FlashSaleItemsContainer
+    suspend fun getFlashSaleItemsContainer(): FlashSaleItemsContainer
 
     companion object {
         private const val LATEST_ENDPOINT = "cc0071a1-f06e-48fa-9e90-b1c2a61eaca7"
