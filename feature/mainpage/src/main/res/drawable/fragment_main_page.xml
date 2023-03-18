@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/swipe_refresh_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.mainpage.fragment.MainPageFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toTopOf="@id/bottom_nav"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:ignore="SmallSp">
+
+            <TextView
+                android:id="@+id/tv_title1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:fontFamily="@font/montserrat_700"
+                android:text="@string/trade_by"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toStartOf="@id/tv_title2"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_title2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:fontFamily="@font/montserrat_700"
+                android:text="@string/bata"
+                android:textColor="@color/main_blue"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_title1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/tv_title1"
+                app:layout_constraintTop_toTopOf="@+id/tv_title1" />
+
+            <ImageView
+                android:id="@+id/bt_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:background="@drawable/bg_main_menu"
+                android:clickable="true"
+                android:contentDescription="@string/menu_icon"
+                android:focusable="true"
+                android:src="@drawable/ic_menu"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_title1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tv_title1" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/iv_profile_image"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_marginEnd="32dp"
+                android:contentDescription="@string/user_profile_picture"
+                tools:src="@drawable/default_profile_image"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_title1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tv_title1" />
+
+            <TextView
+                android:id="@+id/tv_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="@drawable/bg_click_text"
+                android:fontFamily="@font/poppins_400"
+                android:text="@string/location"
+                android:textSize="11sp"
+                app:layout_constraintEnd_toStartOf="@id/iv_location_down"
+                app:layout_constraintStart_toStartOf="@+id/iv_profile_image"
+                app:layout_constraintTop_toBottomOf="@+id/iv_profile_image" />
+
+            <ImageView
+                android:id="@+id/iv_location_down"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="1dp"
+                android:contentDescription="@string/down_arrow"
+                android:src="@drawable/ic_down_arrow"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_location"
+                app:layout_constraintEnd_toEndOf="@+id/iv_profile_image"
+                app:layout_constraintStart_toEndOf="@+id/tv_location"
+                app:layout_constraintTop_toTopOf="@+id/tv_location" />
+
+            <EditText
+                android:id="@+id/et_search"
+                android:layout_width="262dp"
+                android:layout_height="24dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_search_view"
+                android:fontFamily="@font/poppins_400"
+                android:gravity="center"
+                android:hint="@string/search_hint"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:textSize="11sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_location" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="18dp"
+                android:contentDescription="@string/button_hide_password"
+                android:src="@drawable/ic_search"
+                app:layout_constraintBottom_toBottomOf="@+id/et_search"
+                app:layout_constraintEnd_toEndOf="@+id/et_search"
+                app:layout_constraintTop_toTopOf="@+id/et_search" />
+
+            <HorizontalScrollView
+                android:id="@+id/categories"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/et_search">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/bt_category_phones"
+                        style="@style/MainCategoryIcon"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="20dp"
+                        android:contentDescription="@string/phones"
+                        android:src="@drawable/ic_phones"
+                        app:layout_constraintEnd_toStartOf="@id/bt_category_headphones"
+                        app:layout_constraintHorizontal_chainStyle="spread_inside"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/bt_category_headphones"
+                        style="@style/MainCategoryIcon"
+                        android:contentDescription="@string/headphones"
+                        android:src="@drawable/ic_headphones"
+                        app:layout_constraintEnd_toStartOf="@id/bt_category_games"
+                        app:layout_constraintStart_toEndOf="@id/bt_category_phones"
+                        app:layout_constraintTop_toTopOf="@id/bt_category_phones" />
+
+                    <ImageView
+                        android:id="@+id/bt_category_games"
+                        style="@style/MainCategoryIcon"
+                        android:contentDescription="@string/games"
+                        android:src="@drawable/ic_games"
+                        app:layout_constraintEnd_toStartOf="@id/bt_category_cars"
+                        app:layout_constraintStart_toEndOf="@id/bt_category_headphones"
+                        app:layout_constraintTop_toTopOf="@id/bt_category_phones" />
+
+                    <ImageView
+                        android:id="@+id/bt_category_cars"
+                        style="@style/MainCategoryIcon"
+                        android:contentDescription="@string/cars"
+                        android:src="@drawable/ic_cars"
+                        app:layout_constraintEnd_toStartOf="@id/bt_category_furniture"
+                        app:layout_constraintStart_toEndOf="@id/bt_category_games"
+                        app:layout_constraintTop_toTopOf="@id/bt_category_phones" />
+
+                    <ImageView
+                        android:id="@+id/bt_category_furniture"
+                        style="@style/MainCategoryIcon"
+                        android:contentDescription="@string/furniture"
+                        android:src="@drawable/ic_furniture"
+                        app:layout_constraintEnd_toStartOf="@id/bt_category_kids"
+                        app:layout_constraintStart_toEndOf="@id/bt_category_cars"
+                        app:layout_constraintTop_toTopOf="@id/bt_category_phones" />
+
+                    <ImageView
+                        android:id="@+id/bt_category_kids"
+                        style="@style/MainCategoryIcon"
+                        android:layout_marginEnd="15dp"
+                        android:contentDescription="@string/kids"
+                        android:src="@drawable/ic_kids"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/bt_category_furniture"
+                        app:layout_constraintTop_toTopOf="@id/bt_category_phones" />
+
+                    <TextView
+                        android:id="@+id/tv_category_phones"
+                        style="@style/MainCategoryText"
+                        android:text="@string/phones"
+                        app:layout_constraintEnd_toEndOf="@id/bt_category_phones"
+                        app:layout_constraintStart_toStartOf="@id/bt_category_phones"
+                        app:layout_constraintTop_toBottomOf="@id/bt_category_phones" />
+
+                    <TextView
+                        android:id="@+id/tv_category_headphones"
+                        style="@style/MainCategoryText"
+                        android:text="@string/headphones"
+                        app:layout_constraintEnd_toEndOf="@id/bt_category_headphones"
+                        app:layout_constraintStart_toStartOf="@id/bt_category_headphones"
+                        app:layout_constraintTop_toBottomOf="@id/bt_category_headphones" />
+
+                    <TextView
+                        android:id="@+id/tv_category_games"
+                        style="@style/MainCategoryText"
+                        android:text="@string/games"
+                        app:layout_constraintEnd_toEndOf="@id/bt_category_games"
+                        app:layout_constraintStart_toStartOf="@id/bt_category_games"
+                        app:layout_constraintTop_toBottomOf="@id/bt_category_games" />
+
+                    <TextView
+                        android:id="@+id/tv_category_cars"
+                        style="@style/MainCategoryText"
+                        android:text="@string/cars"
+                        app:layout_constraintEnd_toEndOf="@id/bt_category_cars"
+                        app:layout_constraintStart_toStartOf="@id/bt_category_cars"
+                        app:layout_constraintTop_toBottomOf="@id/bt_category_cars" />
+
+                    <TextView
+                        android:id="@+id/tv_category_furniture"
+                        style="@style/MainCategoryText"
+                        android:text="@string/furniture"
+                        app:layout_constraintEnd_toEndOf="@id/bt_category_furniture"
+                        app:layout_constraintStart_toStartOf="@id/bt_category_furniture"
+                        app:layout_constraintTop_toBottomOf="@id/bt_category_furniture" />
+
+                    <TextView
+                        android:id="@+id/tv_category_kids"
+                        style="@style/MainCategoryText"
+                        android:text="@string/kids"
+                        app:layout_constraintEnd_toEndOf="@id/bt_category_kids"
+                        app:layout_constraintStart_toStartOf="@id/bt_category_kids"
+                        app:layout_constraintTop_toBottomOf="@id/bt_category_kids" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </HorizontalScrollView>
+
+            <TextView
+                android:id="@+id/tv_latest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="11dp"
+                android:layout_marginTop="29dp"
+                android:fontFamily="@font/poppins_500"
+                android:text="@string/latest"
+                android:textColor="@color/black"
+                android:textSize="17sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/categories" />
+
+            <TextView
+                android:id="@+id/tv_view_all_latest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_click_text"
+                android:clickable="true"
+                android:focusable="true"
+                android:layout_marginEnd="11dp"
+                android:fontFamily="@font/poppins_500"
+                android:text="@string/view_all"
+                android:textSize="11sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/categories"
+                app:layout_constraintTop_toTopOf="@id/tv_latest" />
+
+            <ProgressBar
+                android:id="@+id/progress_bar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_latest" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_latest"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_latest"
+                tools:listitem="@layout/item_latest" />
+
+            <TextView
+                android:id="@+id/tv_flash_sale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="11dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/poppins_500"
+                android:text="@string/flash_sale"
+                android:textColor="@color/black"
+                android:textSize="17sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rv_latest" />
+
+            <TextView
+                android:id="@+id/tv_view_all_flash_sale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="11dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="@drawable/bg_click_text"
+                android:fontFamily="@font/poppins_500"
+                android:text="@string/view_all"
+                android:textSize="11sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/categories"
+                app:layout_constraintTop_toTopOf="@id/tv_flash_sale" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_flash_sale"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_flash_sale"
+                tools:listitem="@layout/item_flash_sale" />
+
+            <TextView
+                android:id="@+id/tv_brands"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="11dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/poppins_500"
+                android:text="@string/brands"
+                android:textColor="@color/black"
+                android:textSize="17sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rv_flash_sale" />
+
+            <TextView
+                android:id="@+id/tv_view_all_brands"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="11dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="@drawable/bg_click_text"
+                android:fontFamily="@font/poppins_500"
+                android:text="@string/view_all"
+                android:textSize="11sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/categories"
+                app:layout_constraintTop_toTopOf="@id/tv_brands" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_brands"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_brands"
+                tools:listitem="@layout/item_brands" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

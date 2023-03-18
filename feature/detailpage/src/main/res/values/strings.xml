@@ -1,0 +1,13 @@
+<resources>
+
+    <string name="icon_plus">Icon plus</string>
+    <string name="icon_minus">Icon minus</string>
+    <string name="quantity">Quantity:</string>
+    <string name="color">Color:</string>
+    <string name="icon_star">Icon star</string>
+    <string name="icon_share">Icon share</string>
+    <string name="icon_favorite">Icon favorite</string>
+    <string name="item_image">Item image</string>
+    <string name="back_arrow">Back arrow</string>
+    <string name="default_description">Features waterproof, fire, air resistant shoes. all changed when the country of fire attacked</string>
+</resources>

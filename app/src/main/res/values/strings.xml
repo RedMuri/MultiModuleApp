@@ -16,6 +16,7 @@
     <string name="welcome_back">Welcome back</string>
     <string name="password">Password</string>
     <string name="button_hide_password">Button hide password</string>
+
     <string name="change_photo">Change photo</string>
     <string name="profile">Profile</string>
     <string name="user_profile_picture">User profile picture</string>
@@ -25,6 +26,7 @@
     <string name="right_arrow">Right arrow</string>
     <string name="payment_method">Payment method</string>
     <string name="balance">Balance</string>
+    <string name="back_arrow">Back arrow</string>
     <string name="default_balance">$1593</string>
     <string name="trade_history">Trade history</string>
     <string name="restore_purchase">Restore Purchase</string>
@@ -34,10 +36,10 @@
     <string name="log_out_icon">Log out icon</string>
     <string name="log_out">Log out</string>
     <string name="default_user_name">User name</string>
+
     <string name="trade_by">Trade by</string>
     <string name="bata">bata</string>
     <string name="menu_icon">Menu icon</string>
-    <string name="back_arrow">Back arrow</string>
     <string name="location">Location</string>
     <string name="down_arrow">Down arrow</string>
     <string name="search_hint">What are you looking for?</string>
@@ -52,6 +54,7 @@
     <string name="plus_icon">Plus icon</string>
     <string name="favorite_icon">Favorite icon</string>
     <string name="flash_sale">Flash sale</string>
+
     <string name="icon_plus">Icon plus</string>
     <string name="icon_minus">Icon minus</string>
     <string name="quantity">Quantity:</string>

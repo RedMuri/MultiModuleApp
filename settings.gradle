@@ -14,3 +14,11 @@ dependencyResolutionManagement {
 }
 rootProject.name = "RedMuriApp"
 include ':app'
+include ':core:data'
+include ':core:db'
+include ':core:network'
+include ':core:domain'
+include ':feature:profile'
+include ':feature:auth'
+include ':feature:mainpage'
+include ':feature:detailpage'

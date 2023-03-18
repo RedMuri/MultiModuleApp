@@ -40,6 +40,10 @@ android {
 }
 
 dependencies {
+    implementation project(path: ':core:network')
+    implementation project(path: ':core:domain')
+    implementation project(path: ':core:data')
+
     implementation 'androidx.core:core-ktx:1.9.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.8.0'
@@ -56,6 +60,11 @@ dependencies {
     implementation "androidx.preference:preference-ktx:1.2.0"
 
     implementation "androidx.room:room-ktx:2.5.0"
+    implementation project(path: ':feature:profile')
+    implementation project(path: ':feature:auth')
+    implementation project(path: ':feature:mainpage')
+    implementation project(path: ':feature:detailpage')
+    implementation project(path: ':core:db')
     ksp "androidx.room:room-compiler:2.5.0"
 
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
@@ -67,6 +76,6 @@ dependencies {
 
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
 
-    implementation 'com.google.dagger:dagger:2.44'
-    kapt 'com.google.dagger:dagger-compiler:2.44'
+    implementation 'com.google.dagger:dagger:2.45'
+    kapt 'com.google.dagger:dagger-compiler:2.45'
 }

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.activities.MainActivity">
+    tools:context=".MainActivity">
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/main_container"
@@ -14,7 +14,7 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         app:defaultNavHost="true"
-        app:navGraph="@navigation/main_nav" />
+        app:navGraph="@navigation/navigation" />
 
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -25,7 +25,6 @@
         android:layout_marginTop="-20dp"
         android:background="@drawable/bg_bottom_nav"
         android:visibility="gone"
-        app:itemBackground="@drawable/bg_bottom_nav_main_selector"
         app:labelVisibilityMode="unlabeled"
         app:menu="@menu/bottom_nav_menu" />
 </LinearLayout>

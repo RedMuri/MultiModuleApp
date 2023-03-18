@@ -23,6 +23,10 @@
         <item name="android:gravity">center</item>
     </style>
 
+    <style name="ThemeButtonMainBlue">
+        <item name="colorPrimary">@color/main_blue</item>
+    </style>
+
     <style name="ButtonMainBlue">
         <item name="android:background">@drawable/bg_rounded_button</item>
         <item name="android:theme">@style/ThemeButtonMainBlue</item>
